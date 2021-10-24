@@ -12,10 +12,11 @@ author:
 
 player addEventHandler ["InventoryOpened", {
 	params ["_unit", "_container"];
-	if ((_this #1) iskindof "Man") then {
+	if ((_this #1) iskindof "Man" && (!alive (_this #1)) ) then {
 		[] spawn {
-		waitUntil {!isnull findDisplay 602};
-		(finddisplay 602) closedisplay 1;
+			waitUntil {!isnull findDisplay 602};
+			(finddisplay 602) closedisplay 1;
+			cutText ["No Loot", "PLAIN DOWN",0,true,true];
 	  };
 	};
 }];

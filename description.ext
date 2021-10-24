@@ -1,1 +1,17 @@
+onLoadIntro = "Nsn | Rey de la colina";
+OnLoadName		= "Nsn | Rey de la colina";
+OnLoadMission	= "";
+//loadScreen		= "fotito.jpg";
+briefingName = "Mision de prueba de NsN";
+
 #include "cfgfuctions.hpp"
+
+class params {
+  class Preparacion
+  {
+    title = "Tiempo preparacion";
+    texts[] = {"0","2","5","10"};
+    values[] = {0,2,5,10};
+    default = 10;
+  };
+}

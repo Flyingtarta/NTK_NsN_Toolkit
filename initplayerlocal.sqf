@@ -1,7 +1,11 @@
 
+removeGoggles player;
 
-//Tiempo de preparacion Radio de 100 metros y 2 minutos
-[] call nsn_fnc_NoLonewolf;
 [] call nsn_fnc_NoLootBody;
-
-[100,120] call nsn_fnc_PrepareTime;
+//
+[] call nsn_fnc_LoadoutCheck;
+//Preparation time
+_tiempoPreparacion = ["Preparacion",10] call BIS_fnc_getParamValue;
+[100,60*_tiempoPreparacion] call nsn_fnc_PrepareTime;
+//no lonewolf
+[] call nsn_fnc_NoLonewolf;

@@ -19,8 +19,8 @@ Output:
 params [ ["_Radius",100] ,["_preparationTime", 120] ];
 
 
-if (player getvariable ["NSN_VAR_PrepTime_exept",false] || time > _preparationTime) exitwith {}; //if has an exeption, this wont apply
-
+if (time > _preparationTime) exitwith {}; //if has an exeption, this wont apply
+sleep 1;
 //saves start position
 private _beginPos = getpos player;
 
@@ -28,7 +28,7 @@ _time = _preparationTime;
 
 //if gets in late, shows same time left
 if (time > 1) then {
-  _time = _preparationTim - time;
+  _time = _preparationTime - time;
 };
 
 //Timer variable
@@ -44,7 +44,9 @@ _mk setMarkerAlphaLocal 0.5;
 
 _eh = player addeventhandler ["Fired",{
     params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_gunner"];
-    deletevehicle _projectile;
+    if !(player getvariable ["NSN_VAR_PrepTime_exept",false]) then {
+      deletevehicle _projectile;
+    };
   }];
 
 
@@ -52,7 +54,9 @@ while {_preparationTime > time } do { // in preparation phase
   _time = _time - 1;
   hintSilent format["Tiempo de preparacion: \n %1", [((_time)/60)+.01,"HH:MM"] call BIS_fnc_timetostring];
   if (player distance2d _beginPos > _radius) then { //if its too far, its teleported
-    player setpos _beginPos;
+    if !(player getvariable ["NSN_VAR_PrepTime_exept",false]) then {
+      player setpos _beginPos;
+    };
   };
   sleep 1;
 };
