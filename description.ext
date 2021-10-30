@@ -5,6 +5,7 @@ OnLoadMission	= "";
 briefingName = "Mision de prueba de NsN";
 
 #include "cfgfuctions.hpp"
+respawnOnStart = -1;
 
 class params {
   class Preparacion
