@@ -67,3 +67,36 @@ _intel_var hideObjectGlobal false;
     _intel setmarkertypelocal "hd_flag";
   }
 ] remoteexec ["call",_bandoGanador];
+
+//_timeFinal = time + (60*45); // 45 minutos para encontrar la intel y llevarla a base
+_timeFinal = time + 60; // 45 minutos para encontrar la intel y llevarla a base
+timefinal = _timeFinal;
+publicvariable "timefinal";
+
+_bandoPerdio = allplayers select {alive _x &&((side _x) isnotequalto _bandoGanador)};
+["",["<t color='#FF0000' size='2'> Tranferencia finalizada <br/> Tienen 45 minutos para evitar que encuentren la intel</t>", "PLAIN DOWN", 1, true, true]] remoteexec ["cutText",_bandoPerdio];
+
+while {_timeFinal > time} do {
+  _bluf = {(side _x) isequalto blufor && alive _x } count playableUnits;
+  _opf =  {(side _x) isequalto opfor  && alive _x } count playableUnits;
+
+  if (_bluf isequalto 0) exitwith { //gana opfor
+    systemchat str "gana opfor";
+    ["win1", true] remoteexec ["BIS_fnc_endMission",opfor];
+    ["end1", false] remoteexec ["BIS_fnc_endMission",blufor];
+  };
+
+  if (_opf isequalto 0) exitwith { //gana bluefor
+    systemchat str "gana bluefor";
+    ["win1", true] remoteexec ["BIS_fnc_endMission",blufor];
+    ["end1", false] remoteexec ["BIS_fnc_endMission",opfor];
+  };
+  sleep 1;
+};
+
+
+if !(missionNamespace getvariable ["IntelEntregada",false]) then {//gana bando que no entrega
+  _win = allplayers select {side _x isnotequalto _bandoGanador};
+  ["end1", true] remoteexec ["BIS_fnc_endMission",_win];
+  ["end1", false] remoteexec ["BIS_fnc_endMission",_bandoGanador];
+};

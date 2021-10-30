@@ -45,8 +45,6 @@ private _accion = [
 ] call ace_interact_menu_fnc_addActionToObject;
 
 
-
-
 addMissionEventHandler ["draw3D",
 {
   _sideRadarOwner = missionNamespace getvariable ["NSN_VAR_RadarOwner",sideUnknown];

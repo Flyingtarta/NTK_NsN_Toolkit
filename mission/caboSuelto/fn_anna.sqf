@@ -16,7 +16,8 @@
 			_caller removemagazine "acex_intelitems_photo";
 
 			_lose = allplayers select {(side _x) isnotequalto (side _caller)};
-			["end1", true] remoteexec ["BIS_fnc_endMission",side _caller];
+			missionNamespace getvariable ["IntelEntregada",true,true];
+			["win1", true] remoteexec ["BIS_fnc_endMission",side _caller];
 			["end1", false] remoteexec ["BIS_fnc_endMission",_lose];
 		},
 		nil,

@@ -19,12 +19,12 @@ Pegar dentro de la carpeta de la mision todo lo que contiene este repositorio
 
 - No permite lootear cadaveres
 
-## Funciones pensadas a futuro
-
 - Limitar loadout para que no se pueda cargar mas de lo que se tiene inicialmente
 
-- Repack facil por medio de addaction basandose en punto anterior
+- Limitador de vidas por persona
+
+## Funciones pensadas a futuro
 
 - Dialog de "compra" de vehiculos con puntos
 
-- Limitador de vidas por persona 
+- Mejoras para logistica ( mayor facilidad de mover cajas )
