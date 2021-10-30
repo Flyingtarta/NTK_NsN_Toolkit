@@ -10,7 +10,7 @@
 
 */
 
-//if (isserver) exitwith {};
+if !(hasInterface) exitwith {};
 
 private _accion = [
   "Intervenir Radar",//0
@@ -43,6 +43,9 @@ private _accion = [
   [],
   _accion
 ] call ace_interact_menu_fnc_addActionToObject;
+
+
+
 
 addMissionEventHandler ["draw3D",
 {
