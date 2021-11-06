@@ -9,7 +9,7 @@ author:
   Tarta
 */
 
-
+/*
 player addEventHandler ["InventoryOpened", {
 	params ["_unit", "_container"];
 	if ((_this #1) iskindof "Man" && (!alive (_this #1)) ) then {

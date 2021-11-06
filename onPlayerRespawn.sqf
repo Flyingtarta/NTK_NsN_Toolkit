@@ -20,7 +20,7 @@ private _uid = getPlayerUID player;
   }else{
     {
       cutText ["<t color='#ff0000' size='2'> No te quedan mas vidas </t>","PLAIN DOWN", -1, true, true];
-      hideObject player;
+      hideObjectGlobal player;
       ["Initialize", [player, [], true ]] call BIS_fnc_EGSpectator;
     }remoteexec["call",remoteExecutedOwner];
   }

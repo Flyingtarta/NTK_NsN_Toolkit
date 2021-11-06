@@ -1,8 +1,8 @@
-onLoadIntro = "Nsn | Rey de la colina";
-OnLoadName		= "Nsn | Rey de la colina";
+onLoadIntro = "Nsn | Cabo Suelto";
+OnLoadName		= "Nsn | Cabo Suelto";
 OnLoadMission	= "";
-//loadScreen		= "fotito.jpg";
-briefingName = "Mision de prueba de NsN";
+loadScreen		= "intro.jpg";
+briefingName = "";
 
 #include "cfgfuctions.hpp"
 respawnOnStart = -1;
@@ -11,8 +11,8 @@ class params {
   class Preparacion
   {
     title = "Tiempo preparacion";
-    texts[] = {"0","2","5","10"};
-    values[] = {0,2,5,10};
+    texts[] = {"0","2","5","10","20"};
+    values[] = {0,2,5,10,20};
     default = 10;
   };
   class Vidas
@@ -22,4 +22,24 @@ class params {
     values[] = {0,1,2,3,5,-100};
     default = 2;
   };
+};
+
+/*
+class CfgSFX
+{
+  class SonidoGen {
+    empty[] = {"",0,0,0,0,0,0,0};
+    engine[] = {"\rhsafrf\addons\rhs_c_radars\Sounds\Engines01.wav",1,1,100,1,0,0,0};
+    sounds[] = {engine};
+    name = "SonidoGen";
+
+  };
+};
+
+class CfgVehicles
+{
+	class MyGenSound // class name to be used with createSoundSource
+	{
+		sound = "SonidoGen"; // reference to CfgSFX class
+	};
 };

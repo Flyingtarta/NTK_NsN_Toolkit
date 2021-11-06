@@ -1,17 +1,12 @@
 /*
   Description:
-    [LOCAL]
-
-
-  Por hacer:
-    Contador de 15 minutos para que tire la data
-    parte final al activarse
-    bajar el sonido al motor para que no se escuche de la loma de la mierda
+    Especifico de mision [LOCAL]
 
 */
 
 if !(hasInterface) exitwith {};
 
+//accion para ACE
 private _accion = [
   "Intervenir Radar",//0
   "intervenir Radar",//1
@@ -22,12 +17,14 @@ private _accion = [
     missionNamespace setvariable ["NSN_VAR_RadarOwner",side _CALLER ,true];
     missionNamespace setvariable ["NSN_VAR_PROGRESO",0,true];
 
-    if !(missionnamespace getvariable ["NSN_VAR_EngineRadarOn",false]) then { // prendemos motor
+    /*if !(missionnamespace getvariable ["NSN_VAR_EngineRadarOn",false]) then { // prendemos motor
       createSoundSource ["rhs_Sound_radar1", gen, [], 0];
+      //createSoundSource ["MyGenSound", gen, [], 0];
       missionNamespace setvariable ["NSN_VAR_EngineRadarOn",true,true];
     };
+    */
 
-    if (side _target isequalto opfor) then {
+    if (side _caller isequalto opfor) then {
       rr animate ["radar_rotation",0.85,0.1];
 
     }else{
@@ -37,6 +34,7 @@ private _accion = [
   {side (_this #1) isnotequalto (missionnamespace getvariable ["NSN_VAR_RadarOwner",sideUnknown]) }//4
 ] call ace_interact_menu_fnc_createAction;
 
+//Crea accion para inervenir el radar
 [
   interv,
   0,
@@ -44,7 +42,7 @@ private _accion = [
   _accion
 ] call ace_interact_menu_fnc_addActionToObject;
 
-
+//Muestra el progreso
 addMissionEventHandler ["draw3D",
 {
   _sideRadarOwner = missionNamespace getvariable ["NSN_VAR_RadarOwner",sideUnknown];

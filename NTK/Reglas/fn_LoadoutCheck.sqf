@@ -23,7 +23,8 @@ player addEventHandler ["Take", {
       _cargadoresActuales = { _x in _cargadoresCompatibles } count (magazines player);
       if (_cargadoresActuales > cargadoresIniciales) then {
         player removeItem _item;
-        (finddisplay 602) closedisplay 1;
+        _container addItemCargoGlobal [_item,1];
+        //(finddisplay 602) closedisplay 1;
         cutText ["<t color='#ff0000' size='2'>No carges mas cargadores que los que tenias al iniciar </t>", "PLAIN DOWN",0,true,true];
       };
 
@@ -33,7 +34,8 @@ player addEventHandler ["Take", {
       _cantidadInicial = loadoutInicial get _item;
       if (_cantidadActual > _cantidadInicial) then {
         player removeItem _item;
-        (finddisplay 602) closedisplay 1;
+        _container addItemCargoGlobal [_item,1];
+        //(finddisplay 602) closedisplay 1;
         cutText ["<t color='#ff0000' size='2'>No carges mas cosas de las que tenias al principio </t>", "PLAIN DOWN",0,true,true];
       };
     };
