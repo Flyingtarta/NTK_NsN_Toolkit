@@ -1,8 +1,6 @@
 
-// falta agregar a los tom
-
 private _uid = getPlayerUID player;
-
+player setvariable ["BandoOriginal",side player,true];
 
 [_uid,
 {

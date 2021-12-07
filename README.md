@@ -28,3 +28,6 @@ Pegar dentro de la carpeta de la mision todo lo que contiene este repositorio
 - Dialog de "compra" de vehiculos con puntos
 
 - Mejoras para logistica ( mayor facilidad de mover cajas )
+- Mejora en Repack para morteros (50%)
+- Respawnean lejos
+- Sacar lonewolf a apoyo y pilotos

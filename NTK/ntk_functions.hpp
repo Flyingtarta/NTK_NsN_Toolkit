@@ -1,7 +1,7 @@
 class NsNReglas {
 
   file = "NTK\Reglas";
-  class limiteDeVidas {}; 
+  class limiteDeVidas {};
   class LoadoutCheck  {};
   class NoGlobalMarks {};
   class NoLonewolf    {};
@@ -9,4 +9,16 @@ class NsNReglas {
   class NoRadioSteal  {};
   class PrepareTime   {};
 
+};
+
+class Common {
+  file = "NTK\common";
+  class diferenciaBandosEnArea {};
+};
+
+class KOL {
+  file = "NTK\KOL";
+  class mortarEasyRepack {};
+  class ammoBoxEasyMove  {};
+  class heliEasyRepack   {};
 };

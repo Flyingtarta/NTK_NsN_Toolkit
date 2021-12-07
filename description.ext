@@ -1,11 +1,16 @@
-onLoadIntro = "Nsn | Cabo Suelto";
+/*onLoadIntro = "Nsn | Cabo Suelto";
 OnLoadName		= "Nsn | Cabo Suelto";
 OnLoadMission	= "";
 loadScreen		= "intro.jpg";
 briefingName = "";
-
+*/
 #include "cfgfuctions.hpp"
 respawnOnStart = -1;
+
+#include "common.hpp"
+class RscTitles {
+  #include "mission\3event\ui\sectores.hpp"
+};
 
 class params {
   class Preparacion
@@ -22,24 +27,10 @@ class params {
     values[] = {0,1,2,3,5,-100};
     default = 2;
   };
-};
-
-/*
-class CfgSFX
-{
-  class SonidoGen {
-    empty[] = {"",0,0,0,0,0,0,0};
-    engine[] = {"\rhsafrf\addons\rhs_c_radars\Sounds\Engines01.wav",1,1,100,1,0,0,0};
-    sounds[] = {engine};
-    name = "SonidoGen";
-
+  class TiempoEntreZonas {
+    Title = "Tiempo entre activacion de zonas";
+    texts[] = {"1","10","20","30","40"};
+    values[]= {1,10,20,30,40};
+    default = 30;
   };
-};
-
-class CfgVehicles
-{
-	class MyGenSound // class name to be used with createSoundSource
-	{
-		sound = "SonidoGen"; // reference to CfgSFX class
-	};
 };
