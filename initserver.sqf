@@ -3,4 +3,7 @@
 _tiempoPreparacion = ["Preparacion",10] call BIS_fnc_getParamValue;
 waituntil {_tiempoPreparacion*60 < time};
 systemchat "paso tiempo de espera de preparacion";
-[] call nsn_fnc_gameplay_init;
+
+[] spawn NSN_fnc_SB_gameplay_initServer;
+
+systemchat str "SectoresInit";

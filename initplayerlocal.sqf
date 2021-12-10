@@ -1,4 +1,3 @@
-enableEngineArtillery false;
 removeGoggles player;
 
 
@@ -14,12 +13,12 @@ systemchat "NTK | Loadout check...OK!";
 //Preparation time
 _tiempoPreparacion = ["Preparacion",10] call BIS_fnc_getParamValue;
 
-//Marcador
-[] spawn {call NSN_fnc_HUD_handler};
 
 ///////////////////////////Esto siempre al final////////////////////////////////
-[100,60*_tiempoPreparacion] call nsn_fnc_PrepareTime;
+[1000,60*_tiempoPreparacion] call nsn_fnc_PrepareTime;
 systemchat "NTK | PreparationTime...OK!";
+
+[] spawn nsn_fnc_uiSectores;
 
 call nsn_fnc_NoLonewolf;
 systemchat "NTK | Lonewolf...OK!";

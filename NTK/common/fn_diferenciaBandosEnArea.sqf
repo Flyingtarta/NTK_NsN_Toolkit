@@ -8,13 +8,23 @@ Descripcion:
 input:
       0: ARRAY (posicion) posicion del centro
       1: NUMERO (numero) Radio
+      2: AREA (opcional y radio = 0):  (area / marcador / trigger )
 Output:
       0:numero ratio de diferencia, va de 1 a 100 donde 1 es total dominancia
       1:Bando con mas gente en el area
 */
 
-params ["_pos","_radio"];
-private _ent = _pos nearentities [["man","car","tank","wheeled","tracked"],_radio];
+params ["_pos","_radio",["_area",""]];
+
+_ent = [];
+
+if (_radio >0) then {
+  _ent = _pos nearentities [["man","car","tank","wheeled","tracked"],_radio];
+}else{
+  if (_area isequalto "") exitwith {systemchat "DIFERENCIA BANDOS ERROR | AREA NO DEFINIDA ";[-1,sideUnknown]};
+  _ent = allunits select {getpos _x inarea _area && isTouchingGround _x && alive _x};
+};
+
 if (_ent isequalto [] ) exitwith { [-1,sideUnknown] };
 private _BandoUnidades = [];
 {

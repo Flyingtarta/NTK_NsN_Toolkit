@@ -33,4 +33,12 @@ class params {
     values[]= {1,10,20,30,40};
     default = 30;
   };
+
+  class Duracion {
+    Title = "Duracion Total de la partida (sectoresAD)"
+    texts[] = {"2min","10min","30min", "1hs","2hs","2:45hs","3hs"};
+    values[] = {2,10,30,60,120,165,180};
+    default = 165;
+  };
+
 };
