@@ -23,6 +23,7 @@ While {true} do {
     _inbase = (player distance2d _base) < 100;
     if (_lonewolf && !_inbase) then {
         HintSilent "Estas haciendo lonewolf\nReagrupate con tus compañeros o retirate a base";
+        player setvariable ["NSN_VAR_LONEWOLF",true,true];
         /*
         if (weaponLowered player ) then {
             if (_blurred) then {
@@ -40,7 +41,9 @@ While {true} do {
 
           };
           HintSilent "Estas haciendo lonewolf";*/
-      };
+      }else{
+        player setvariable ["NSN_VAR_LONEWOLF",false,true];
+      }
   };
-  sleep 1;
+  sleep 5;
 };
