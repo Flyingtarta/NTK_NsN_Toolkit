@@ -23,11 +23,11 @@ Pegar dentro de la carpeta de la mision todo lo que contiene este repositorio
 
 - Limitador de vidas por persona
 
+
 ## Funciones pensadas a futuro
 
 - Dialog de "compra" de vehiculos con puntos
 
-- Mejoras para logistica ( mayor facilidad de mover cajas )
-- Mejora en Repack para morteros (50%)
+- Mejoras para logistica ( mayor facilidad de mover cajas
+- Mejora en Repack para morteros (80%)
 - Respawnean lejos
-- Sacar lonewolf a apoyo y pilotos

@@ -15,7 +15,9 @@ Decription:
 _blurred = false;
 _pp = 0;
 private _base = getpos player;
+if (player getvariable ["apoyo",false]) exitwith {"APOYO | Lonewolf desactivado para esta unidad"};
 //Checks distance between him and other players arround
+
 While {true} do {
   if (alive player && ((side player) isnotequalto civilian)) then { //if its alive and not civilean
     _aliados = playableUnits select {(side _x isequalto side player) && (alive _x) && (_x isnotequalto player)}; //filter to all alive allies
