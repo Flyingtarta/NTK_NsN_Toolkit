@@ -4,6 +4,8 @@ removeGoggles player;
 player setVariable ["BIS_enableRandomization", false];
 player setvariable ["BandoOriginal",side player,true];
 
+[] call nsn_fnc_vehiclesAllowed;
+
 call nsn_fnc_NoLootBody;
 systemchat "NTK | No loot...OK!";
 //

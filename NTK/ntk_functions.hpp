@@ -8,6 +8,7 @@ class NsNReglas {
   class NoLootBody    {};
   class NoRadioSteal  {};
   class PrepareTime   {};
+  class vehiclesAllowed {};
 
 };
 
