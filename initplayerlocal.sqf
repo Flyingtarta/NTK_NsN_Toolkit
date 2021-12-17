@@ -1,5 +1,7 @@
 removeGoggles player;
-
+enableEngineArtillery false;
+ACE_maxWeightCarry = 60000;
+ACE_maxWeightDrag = 80000;
 
 player setVariable ["BIS_enableRandomization", false];
 player setvariable ["BandoOriginal",side player,true];
@@ -20,7 +22,7 @@ _tiempoPreparacion = ["Preparacion",10] call BIS_fnc_getParamValue;
 [1000,60*_tiempoPreparacion] call nsn_fnc_PrepareTime;
 systemchat "NTK | PreparationTime...OK!";
 
-[] spawn nsn_fnc_uiSectores;
+[] call nsn_fnc_uiSectores;
 
 call nsn_fnc_NoLonewolf;
 systemchat "NTK | Lonewolf...OK!";

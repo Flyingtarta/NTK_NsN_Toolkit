@@ -22,7 +22,7 @@ While {true} do {
   if (alive player && ((side player) isnotequalto civilian)) then { //if its alive and not civilean
     _aliados = playableUnits select {(side _x isequalto side player) && (alive _x) && (_x isnotequalto player)}; //filter to all alive allies
     _lonewolf = (_aliados findif { _x distance2d player < 200 }) isequalto -1;
-    _inbase = (player distance2d _base) < 100;
+    _inbase = (player distance2d _base) < 500;
     if (_lonewolf && !_inbase) then {
         HintSilent "Estas haciendo lonewolf\nReagrupate con tus compañeros o retirate a base";
         player setvariable ["NSN_VAR_LONEWOLF",true,true];

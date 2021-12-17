@@ -22,4 +22,5 @@ class KOL {
   class mortarEasyRepack {};
   class ammoBoxEasyMove  {};
   class heliEasyRepack   {};
+  class vehicleRepack    {};
 };

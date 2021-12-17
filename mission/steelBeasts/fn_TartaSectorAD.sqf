@@ -17,6 +17,7 @@ params [
   ["_ownerInicial",sideUnknown], // Poder setear si el dueño inical es de un bando o neutral
   ["_condicionEnd",false]
 ];
+
 private _pos = getMarkerPos _marcador,
 //Variables sector
 private _areaState = createHashMap;
@@ -73,6 +74,7 @@ while {!_condicionEnd} do {//loop
             _capturando = false;
             _areaState set ["capturando",false];
           };
+          systemchat str _areaState;
           missionnamespace setvariable [_marcador,_areaState,true];
           sleep 1;
       };

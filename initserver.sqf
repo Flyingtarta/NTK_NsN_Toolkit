@@ -1,3 +1,5 @@
+ACE_maxWeightCarry = 60000;
+ACE_maxWeightDrag = 80000;
 [] call NSN_fnc_LimiteDeVidas;
 [] call NSN_fnc_NoGlobalMarks;
 _tiempoPreparacion = ["Preparacion",10] call BIS_fnc_getParamValue;
