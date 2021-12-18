@@ -10,6 +10,8 @@ waituntil {time> _tiempoPreparacion*60}; //esperamos que pase la estapa de prepa
 
 _duracion = ["Duracion",165] call BIS_fnc_getParamValue;
 marcador = createHashMapFromArray [ [blufor,0] , [opfor,0] , [sideUnknown,0]];
+publicVariable "marcador";
+
 _objetivos = ["obj1","obj_n","obj2"];
 sleep 1;
 while {time < (_duracion+_tiempoPreparacion)*60} do {
@@ -30,7 +32,7 @@ if (_puntosOpfor isequalto _puntosBlufor) then {
     ["end1", true] remoteexec ["BIS_fnc_endMission",opfor];
     ["end1", true] remoteexec ["BIS_fnc_endMission",blufor];
 }else{
-    if (_puntosOpfor>_puntosOpfor) then {
+    if (_puntosOpfor>_puntosBlufor) then {
         ["end1", true] remoteexec ["BIS_fnc_endMission",opfor];
         ["end1", false] remoteexec ["BIS_fnc_endMission",blufor];
     }else{

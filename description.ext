@@ -25,7 +25,7 @@ class params {
     Title = "Cantidad de reapariciones por persona";
     texts[] = {"ninguna","1","2","3","5","Sin limite"};
     values[] = {0,1,2,3,5,-100};
-    default = 2;
+    default = 3;
   };
   class TiempoEntreZonas {
     Title = "Tiempo entre activacion de zonas";

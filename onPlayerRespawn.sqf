@@ -2,7 +2,7 @@
 private _uid = getPlayerUID player;
 player setvariable ["BandoOriginal",side player,true];
 
-[] call nsn_fnc_uiSectores;
+[] spawn nsn_fnc_uiSectores;
 
 [_uid,
 {

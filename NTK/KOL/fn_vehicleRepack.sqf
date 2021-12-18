@@ -14,12 +14,30 @@
 		if (_vehs isequalto []) exitWith { cutText ["<t color='#ff0000' size='3'>No hay vehiculos cerca (20m)</t>", "PLAIN DOWN", -1, true, true] };
 		_vehs = _vehs select { !(_x isKindOf "Man") };
 		private _veh = _vehs#0;
-
-		//if !(count (magazines _veh) < 4) exitwith {cutText ["<t color='#ff0000' size='3'> El mortero tiene la municion llena </t>", "PLAIN DOWN", -1, true, true]};
 		_veh setvehicleammo 1;
 		_veh setfuel 1;
 		cutText ["<t color='#008100' size='3'> Vehiculo Repackeado </t>", "PLAIN DOWN", -1, true, true];
 		deletevehicle _target;
+
+		if (_veh iskindof "rhs_2s3_tv") then {//artilleria rusa
+			_veh removeMagazines  "rhs_mag_WP_2a33" ;
+			_veh removeMagazines  "rhs_mag_LASER_2a33";
+			for "_" from 1 to 4 do {
+			 _veh addMagazineTurret ["rhs_mag_SMOKE_2a33",[0]];
+			 _veh addMagazineTurret ["rhs_mag_ILLUM_2a33",[0]];
+			};
+		};
+
+		if (_veh isKindOf "rhsusf_m109d_usarmy") then { //artilleria rusa
+			{
+				_veh removeMagazines _x;
+			}foreach ["rhs_mag_155mm_m712_2","rhs_mag_155mm_m731_1","rhs_mag_155mm_raams_1","rhs_mag_155mm_m864_3"];
+
+			for "_i" from 0 to 10 do {
+				_veh addMagazineTurret ["rhs_mag_155mm_485_2",[0],100];
+				_veh addMagazineTurret ["rhs_mag_155mm_m825a1_2",[0],100];
+			};
+		};
 	},				// Code executed on completion
 	{},													// Code executed on interrupted
 	[],													// Arguments passed to the scripts as _this select 3
