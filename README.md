@@ -27,7 +27,7 @@ Pegar dentro de la carpeta de la mision todo lo que contiene este repositorio
 ## Funciones pensadas a futuro
 
 - Dialog de "compra" de vehiculos con puntos
-
 - Mejoras para logistica ( mayor facilidad de mover cajas
-- Mejora en Repack para morteros (80%)
-- Respawnean lejos
+- Mejora en Repack para vehiculos y morteros (80%)
+- Respawnean lejos y se los mueve a base una vez que sean > 4
+- Debug de vehiculos por medio de accion de ACE

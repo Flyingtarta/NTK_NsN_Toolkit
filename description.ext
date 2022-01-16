@@ -8,9 +8,7 @@ briefingName = "";
 respawnOnStart = -1;
 
 #include "common.hpp"
-class RscTitles {
-  #include "mission\3event\ui\sectores.hpp"
-};
+#include "NTK\ntk_gui.hpp"
 
 class params {
   class Preparacion
@@ -39,6 +37,13 @@ class params {
     texts[] = {"2min","10min","30min", "1hs","2hs","2:45hs","3hs"};
     values[] = {2,10,30,60,120,165,180};
     default = 165;
+  };
+
+  class puntosDeCompra {
+    Title = "Puntos totales para compra de vehiculos";
+    texts[] = {"500","750","1000", "1200","1500"};
+    values[] = {500,750,1000,1200,1500};
+    default = 1000;
   };
 
 };

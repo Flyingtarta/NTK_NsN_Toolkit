@@ -16,7 +16,7 @@ systemchat "NTK | Loadout check...OK!";
 
 //Preparation time
 _tiempoPreparacion = ["Preparacion",10] call BIS_fnc_getParamValue;
-
+[] spawn nsn_fnc_MCV_init;
 
 ///////////////////////////Esto siempre al final////////////////////////////////
 [1000,60*_tiempoPreparacion] call nsn_fnc_PrepareTime;
