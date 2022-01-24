@@ -23,7 +23,7 @@ _menuDeCompra = player addaction ["MENU DE COMPRA DE VEHICLOS",{
 	_vector = vectordir _shop;
 	_vector set [2,-1];
 	cam setVectorDirAndUp [_vector,[0,0,1]];
-	cam camCommit 1;
+	cam camCommit 0;
 	switchCamera cam;
 	(findDisplay 46 ) createdisplay "menuCompraVeh";
 }];

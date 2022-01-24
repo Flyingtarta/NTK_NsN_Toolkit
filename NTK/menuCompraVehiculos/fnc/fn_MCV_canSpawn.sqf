@@ -11,8 +11,9 @@
 
 */
 
-_mousePos = (screenToWorld (getMousePosition));
-_entitiesFound = _mousePos nearEntities ["Allvehicles",15];
+private _mousePos = (screenToWorld (getMousePosition));
+
+_entitiesFound = _mousePos nearEntities ["Allvehicles",10];
 _entitiesFound select {!(_x isKindOf "Animal")};
 if (_entitiesFound isnotequalto [] ) then {
   _controlInfoText = (finddisplay 1314 displayctrl 100000);

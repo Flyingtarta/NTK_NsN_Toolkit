@@ -18,6 +18,12 @@ class params {
     values[] = {0,2,5,10,20};
     default = 10;
   };
+  class AltoElFuego{
+    title = "Tiempo preparacion";
+    texts[] = {"0","2 minutos","5 minutos","10 minutos","20 minutos","30 minutos","40 minutos"};
+    values[] = {0,2,5,10,20,30,40};
+    default = 20;
+  };
   class Vidas
   {
     Title = "Cantidad de reapariciones por persona";
@@ -45,5 +51,4 @@ class params {
     values[] = {500,750,1000,1200,1500};
     default = 1000;
   };
-
 };
