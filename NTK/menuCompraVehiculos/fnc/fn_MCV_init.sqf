@@ -16,7 +16,7 @@ systemchat "CMD MCV INIT..";
 _menuDeCompra = player addaction ["MENU DE COMPRA DE VEHICLOS",{
 	_shop = compraVehiculos get (side player);
 	if (isNil "cam") then {cam = "Land_HandyCam_F" createVehicleLocal (ASLToAGL eyepos player)};
-	_relpos = _shop modelToWorld [0, -30, 60];
+	_relpos = _shop modelToWorld [0, -10, 30];
 	cam enableSimulation false;
 	cam hideObjectGlobal true;
 	cam setpos _relpos;
@@ -40,10 +40,11 @@ findDisplay 46 displayAddEventHandler ["KeyDown", {
 	(findDisplay 1314 ) closeDisplay 2;
 	};
 }];
-
+//16.8575
 
 //luego del tiempo de espera, chau menu
 _menuDeCompra spawn {
+	_menuDeCompra = _this;
 	_tiempoPreparacion = ["Preparacion",10] call BIS_fnc_getParamValue;
 	waituntil {time > (_tiempoPreparacion*60)};
 	player removeAction _menuDeCompra;

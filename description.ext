@@ -8,20 +8,26 @@ briefingName = "";
 respawnOnStart = -1;
 
 #include "common.hpp"
+
+class RscTitles
+{
+	#include "mission\RAB\gui\marcador.hpp"
+};
+
 #include "NTK\ntk_gui.hpp"
 
 class params {
   class Preparacion
   {
     title = "Tiempo preparacion";
-    texts[] = {"0","2","5","10","20"};
-    values[] = {0,2,5,10,20};
+    texts[] = {"0","2 minutos","5 minutos","10 minutos","20 minutos"};
+    values[] = {0.1,2,5,10,20};
     default = 10;
   };
   class AltoElFuego{
-    title = "Tiempo preparacion";
+    title = "Tiempo Alto el Fuego";
     texts[] = {"0","2 minutos","5 minutos","10 minutos","20 minutos","30 minutos","40 minutos"};
-    values[] = {0,2,5,10,20,30,40};
+    values[] = {0.1,2,5,10,20,30,40};
     default = 20;
   };
   class Vidas

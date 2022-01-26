@@ -7,6 +7,8 @@ Dibuja la zona de combate, basada en un trigger de area cuadrada que nos da el t
 */
 
 //{deleteMarker _x} foreach allMapMarkers;
+if ( isDedicated || !(isServer) ) exitwith {};
+
 params ["_area",["_grid",1000],["_deadZone",True]];
 _zonas = zonas;
 private _gridRadius = _grid/2;

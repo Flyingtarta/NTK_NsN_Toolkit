@@ -26,7 +26,16 @@ if (_handler isequalto "lista_onLoad") then {
 
 if (_handler isequalto "init") then {
   addMissionEventHandler ["EachFrame",{
+    if (localNamespace setvariable ["onEachFrame_MCV",false]) exitwith {};
+    localNamespace setvariable ["onEachFrame_MCV",true];
+
+
+
     if (isnull findDisplay 1314) exitwith { localNamespace setvariable ["NSN_VAR_VEHSELECT",objnull] };
+
+
+    _mousePos = agltoasl (screenToWorld (getMousePosition));
+
     _control = (findDisplay 1314 displayCtrl 1500);
     _shop = compraVehiculos get (side player);
     _selected = lbCurSel _control;
@@ -37,11 +46,11 @@ if (_handler isequalto "init") then {
 
     _vehicles = aviableVehicles get (side player);
     _vehicle = (keys _vehicles) select _selected;
-    _currentVehicle = localNamespace getvariable ["NSN_VAR_VEHSELECT",objNull];
-    _canSpawn = [] call NSN_fnc_MCV_canSpawn;
-    if !(_canSpawn) exitWith {deleteVehicle _currentVehicle; localNamespace setvariable ["NSN_VAR_VEHSELECT",objNull]};
 
-    _mousePos = agltoasl (screenToWorld (getMousePosition));
+
+    _currentVehicle = localNamespace getvariable ["NSN_VAR_VEHSELECT",objNull];
+    _canSpawn = [_shop] call NSN_fnc_MCV_canSpawn;
+    if !(_canSpawn) exitWith {deleteVehicle _currentVehicle; localNamespace setvariable ["NSN_VAR_VEHSELECT",objNull]};
 
     if (isnull _currentVehicle && _canSpawn) exitwith {
       _veh = createSimpleObject [_vehicle,_mousePos, true];
@@ -62,7 +71,7 @@ if (_handler isequalto "init") then {
     };
   }];
 };//init
-
+//PARACHUTE_TARGET
 //////////////////////// menuCompraVeh_onClick /////////////////////////////////
 if (_handler isequalto "menuCompraVeh_onClick") then {
   _params params ["_control", "_button", "_xPos", "_yPos", "_shift", "_ctrl", "_alt"];

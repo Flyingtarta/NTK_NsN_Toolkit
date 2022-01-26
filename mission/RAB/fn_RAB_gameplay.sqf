@@ -6,22 +6,26 @@ SERVERSIDE
 
 */
 systemchat str "RAB | gameplay...ok!";
+if ( isDedicated || !(isServer) ) exitwith {};
+
 
 Marcador = createHashMapFromArray [[opfor,0], [blufor,0]];
 publicVariable "Marcador";
 
 // tiempo de alto el fuego y preparacion
-private _tiempoDePreparacion = ["Preparacion",10] call BIS_fnc_getParamValue * 60;
-private _tiempoDeAltoElFuego = ["AltoElFuego",20] call BIS_fnc_getParamValue * 60;
-waituntil { //Espera que pase el tiempo de alto el fuego y de preparacion
+private _tiempoDePreparacion = (["Preparacion",10] call BIS_fnc_getParamValue) * 60;
+private _tiempoDeAltoElFuego = (["AltoElFuego",20] call BIS_fnc_getParamValue) * 60;
+/*waituntil { //Espera que pase el tiempo de alto el fuego y de preparacion
   time > (_tiempoDePreparacion + _tiempoDeAltoElFuego)
 };
+*/
 
 /*
 Mensaje de que termino el alto el fuego
 */
 
-_actualizaMarcador = {
+//Funcion de actualizador de marcador
+private _actualizaMarcador = {
   _blufor = { ((missionNamespace getVariable _x) get "bando") isequalto blufor} count _zonas;
   _opfor  = { ((missionNamespace getVariable _x) get "bando") isequalto opfor } count _zonas;
   if (_blufor isnotequalto _opfor) then {
@@ -30,10 +34,15 @@ _actualizaMarcador = {
       _diferencia = _blufor - _opfor;
       _valorAnterior = marcador get blufor;
       Marcador set [blufor,_valorAnterior + _diferencia];
+      Marcador set ["diffBlufor", _diferencia];
+      Marcador set ["diffOpfor", 0];
     }else{
       _diferencia =  _opfor - _blufor;
       _valorAnterior = marcador get opfor;
       Marcador set [opfor,_valorAnterior + _diferencia];
+      Marcador set ["diffOpfor", _diferencia];
+      Marcador set ["diffBlufor", 0];
+
     };
   };
   publicVariable "Marcador";
@@ -42,16 +51,13 @@ _actualizaMarcador = {
 
 _zonas = zonas;
 
-while {sleep 60; true} do {
+while {sleep 1; true} do {
 
   {
     _zona = _x;
     _data =missionNamespace getvariable _zona;
-
-
     if (!isnil {_data}) then {
-    //verifica si se capturo
-
+      //verifica si se capturo
       _diff = [_data get "pos",0,_zona] call nsn_fnc_diferenciaBandosEnArea;
       _diff params ["_ratio","_bandoDom"];
       _owner = _data get "bando";
@@ -84,11 +90,8 @@ while {sleep 60; true} do {
 
     };
   }foreach _zonas;
-
   [] call _actualizaMarcador;
-  systemchat str marcador;
-
-  publicVariable "marcador";
+  publicVariable "Marcador";
 };
 /*
 //Actualiza el marcador
