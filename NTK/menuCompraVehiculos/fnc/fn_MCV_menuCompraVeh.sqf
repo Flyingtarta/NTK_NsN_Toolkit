@@ -7,21 +7,22 @@ params ["_handler","_params"];
 
 if (_handler isequalto "lista_onLoad") then {
   {
-    _vehicles = aviableVehicles get (side player);
-    _value = _vehicles get _x;
+    _vehicles = (aviableVehicles get (side player));
+    _value = (_vehicles get _x) select 0;
+    _infCanUSe = (_vehicles get _x) select 1;
     _vehicleName = gettext (configFile >> "CfgVehicles" >> _x >> "displayName");
     _picture = gettext (configFile >> "CfgVehicles" >> _x >> "picture" );
     _pictureRight = gettext (configFile >> "CfgVehicles" >> _x >> "editorPreview");
     (_params#0) lbadd _vehicleName;
     (_params#0) lbSetText [_forEachIndex, _vehicleName];
     (_params#0) lbSetTextRight [_forEachIndex, str _value];
-    (_params#0) lbSetTooltip [_forEachIndex, str _value];
+    if !(_infCanUSe) then {
+        (_params#0) lbSetTooltip [_forEachIndex,"NO PUEDE SER USADO POR INFANTERIA \n SOLO ESPECIALISTAS"];
+    };
     (_params#0) lbSetPicture [_forEachIndex, _picture];
     (_params#0) lbsetPictureColor [_forEachIndex,[1,1,1,1]];
-  }foreach (aviableVehicles get (side player));
+  }foreach ((aviableVehicles get (side player)));
 
-  if (_side isequalto opfor) then {systemchat "aca iria los de opfor"};
-  if (_side isequalto independent) then {systemchat "aca iria los de indp"};
 };
 
 if (_handler isequalto "init") then {
@@ -44,7 +45,7 @@ if (_handler isequalto "init") then {
     _controlInfoText ctrlSetText "Click derecho para poner el vehiculo 								Shift+Click Borrar vehiculo";
     _controlInfoText ctrlSetTextColor [1,1,1,1];
 
-    _vehicles = aviableVehicles get (side player);
+    _vehicles = (aviableVehicles get (side player));
     _vehicle = (keys _vehicles) select _selected;
 
 
@@ -85,14 +86,14 @@ if (_handler isequalto "menuCompraVeh_onClick") then {
     if (_button isequalto 1) then {
       _mousepos =  (screenToWorld (getMousePosition));
       _entitiesFound = _mousePos nearEntities ["Allvehicles",15];
-      _vehicles = aviableVehicles get (side player);
+      _vehicles = (aviableVehicles get (side player));
       if (_entitiesFound isNotEqualTo [] ) then {
         _veh = localNamespace getvariable ["NSN_VAR_VEHSELECT",objNull];
         {
           if (_x isNotEqualTo _veh) then {
             _classname2Delete = typeof _x;
             if (_classname2Delete in (keys _vehicles) ) then{
-              _value = _vehicles get _classname2Delete;
+              _value = (_vehicles get _classname2Delete) select 0;
               deleteVehicle _x;
               _controlInfoText = (finddisplay 1314 displayctrl 100000);
               _controlInfoText ctrlSetText "Se elimino el vehiculo";
@@ -120,13 +121,16 @@ if (_handler isequalto "menuCompraVeh_onClick") then {
       _shop = compraVehiculos get (side player);
       _veh = localNamespace getvariable ["NSN_VAR_VEHSELECT",objNull];
       _classname = typeof _veh;
-      _vehicles = aviableVehicles get (side player);
-      _value = _vehicles get _classname;
+      _vehicles = (aviableVehicles get (side player));
+      _value = (_vehicles get _classname) select 0;
+      _infCanUSe = (_vehicles get _classname) select 1;
       _fondos = missionnamespace getvariable ['NSN_VAR_FOUNDS',0];
       if ( _value > _fondos) exitwith {hint "No te quedan mas fondos"};
       deletevehicle _veh;
       localNamespace setvariable ["NSN_VAR_VEHSELECT",objNull];
-      [_classname,screenToWorld (getMousePosition)] spawn NSN_fnc_MCV_spawnVehicle;
+
+
+      [_classname,screenToWorld (getMousePosition),_infCanUSe] spawn NSN_fnc_MCV_spawnVehicle;
 
       missionNamespace setvariable ["NSN_VAR_FOUNDS",_fondos - _value,true];
       _newText =  format['Fondos: %1',missionnamespace getvariable ['NSN_VAR_FOUNDS',0]];
@@ -138,19 +142,19 @@ if (_handler isequalto "menuCompraVeh_onClick") then {
   //Actualizacion de colores de acuerdo si los puede comprar o no
   //disableSerialization;
 
-  _vehicles = aviableVehicles get (side player);
+  _vehicles = (aviableVehicles get (side player));
   {
-    //_vehicles = aviableVehicles get (side player);
-    _value = _vehicles get _x;
+    
+    _value = (_vehicles get _x) select 0;
     _fondos = missionnamespace getvariable ['NSN_VAR_FOUNDS',0];
-    //systemchat str [_value,_fondos,_control,_vehicles];
+
     if (_fondos < _value) then {
-      (findDisplay 1314 displayctrl 1500) lbSetcolor        [_forEachIndex,[0.4, 0.4, 0.4, 1]];
-      (findDisplay 1314 displayctrl 1500) lbSetcolorright   [_forEachIndex,[0.4, 0.4, 0.4, 1]];
-      (findDisplay 1314 displayctrl 1500) lbsetPictureColor [_forEachIndex,[0.4, 0.4, 0.4, 1]];
+      (findDisplay 1314 displayctrl 1500) lbSetcolor        [_forEachIndex, [0.4, 0.4, 0.4, 1] ];
+      (findDisplay 1314 displayctrl 1500) lbSetcolorright   [_forEachIndex, [0.4, 0.4, 0.4, 1] ];
+      (findDisplay 1314 displayctrl 1500) lbsetPictureColor [_forEachIndex, [0.4, 0.4, 0.4, 1] ];
     }else{
       (findDisplay 1314 displayctrl 1500) lbSetColor        [_forEachIndex , [1,1,1,1] ];
-      (findDisplay 1314 displayctrl 1500) lbSetcolorright   [_forEachIndex ,  [1,1,1,1] ];
+      (findDisplay 1314 displayctrl 1500) lbSetcolorright   [_forEachIndex , [1,1,1,1] ];
       (findDisplay 1314 displayctrl 1500) lbsetPictureColor [_forEachIndex , [1,1,1,1] ];
     }
   }foreach _vehicles;

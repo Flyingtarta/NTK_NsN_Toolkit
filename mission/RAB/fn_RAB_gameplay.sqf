@@ -15,10 +15,10 @@ publicVariable "Marcador";
 // tiempo de alto el fuego y preparacion
 private _tiempoDePreparacion = (["Preparacion",10] call BIS_fnc_getParamValue) * 60;
 private _tiempoDeAltoElFuego = (["AltoElFuego",20] call BIS_fnc_getParamValue) * 60;
-/*waituntil { //Espera que pase el tiempo de alto el fuego y de preparacion
+waituntil { //Espera que pase el tiempo de alto el fuego y de preparacion
   time > (_tiempoDePreparacion + _tiempoDeAltoElFuego)
 };
-*/
+
 
 /*
 Mensaje de que termino el alto el fuego
@@ -42,7 +42,6 @@ private _actualizaMarcador = {
       Marcador set [opfor,_valorAnterior + _diferencia];
       Marcador set ["diffOpfor", _diferencia];
       Marcador set ["diffBlufor", 0];
-
     };
   };
   publicVariable "Marcador";
@@ -50,8 +49,9 @@ private _actualizaMarcador = {
 
 
 _zonas = zonas;
+_duracionTotalEvento = ((["Duracion",120] call BIS_fnc_getParamValue) * 60);
 
-while {sleep 1; true} do {
+while {sleep 1; time <= _duracionTotalEvento } do {
 
   {
     _zona = _x;
@@ -94,8 +94,5 @@ while {sleep 1; true} do {
   publicVariable "Marcador";
 };
 /*
-//Actualiza el marcador
-systemchat str [_bandoDom,_valorAnterior +1];
-_valorAnterior = Marcador get _bandoDom;
-Marcador set [_bandoDom,_valorAnterior +1];
+Declara ganador y perdedor
 */

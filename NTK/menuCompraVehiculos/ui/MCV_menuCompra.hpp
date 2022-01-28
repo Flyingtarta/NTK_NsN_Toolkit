@@ -18,6 +18,7 @@ class menuCompraVeh {
 			w = 0.139219 * safezoneW;
 			h = 0.913 * safezoneH;
 			colorBackground[] = {0,0,0,0.5};
+			colorBorder[] = {0,0,0,1};
 		};
 
 		class listaVeh: RscListbox

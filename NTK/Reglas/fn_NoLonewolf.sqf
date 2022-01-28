@@ -17,6 +17,10 @@ _pp = 0;
 private _base = getpos player;
 if (player getvariable ["apoyo",false]) exitwith {"APOYO | Lonewolf desactivado para esta unidad"};
 //Checks distance between him and other players arround
+_blur = ppEffectCreate ["DynamicBlur",550];
+_blur ppEffectEnable false;
+_blur ppEffectAdjust [2.5];
+_blur ppEffectCommit 0;
 
 While {true} do {
   if (alive player && ((side player) isnotequalto civilian) && !(vehicle player iskindof "air") ) then { //if its alive and not civilean
@@ -24,28 +28,18 @@ While {true} do {
     _lonewolf = (_aliados findif { _x distance2d player < 200 }) isequalto -1;
     _inbase = (player distance2d _base) < 500;
     if (_lonewolf && !_inbase) then {
-        HintSilent "Estas haciendo lonewolf\nReagrupate con tus compañeros o retirate a base";
         player setvariable ["NSN_VAR_LONEWOLF",true,true];
-        /*
-        if (weaponLowered player ) then {
-            if (_blurred) then {
-              _blurred = false;
-              ppEffectDestroy _pp;
-            };
-          /*}else{
-            if !(_blurred) then {
-              _pp = ppEffectCreate ["DynamicBlur",420];
-              _pp ppEffectCommit 1;
-              _pp ppEffectAdjust [1.5];
-              _pp ppEffectEnable true;
-              _blurred = true;
-            };
 
-          };
-          HintSilent "Estas haciendo lonewolf";*/
+        if (weaponLowered player ) then {
+            HintSilent "Estas haciendo lonewolf\nReagrupate con tus compañeros o retirate a base";
+            _blur ppEffectEnable false;
+        }else{
+          HintSilent "Estas haciendo lonewolf\nReagrupate con tus compañeros o retirate a base\n\nBaja el arma para que desaparezca el blur";
+          _blur ppEffectEnable true;
+        };
       }else{
         player setvariable ["NSN_VAR_LONEWOLF",false,true];
-      }
+      };
   };
   sleep 5;
 };

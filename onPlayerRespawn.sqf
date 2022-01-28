@@ -1,8 +1,7 @@
 
 private _uid = getPlayerUID player;
 player setvariable ["BandoOriginal",side player,true];
-
-[] spawn nsn_fnc_uiSectores;
+player setvariable ["RespawnTime",time,true];
 
 [_uid,
 {

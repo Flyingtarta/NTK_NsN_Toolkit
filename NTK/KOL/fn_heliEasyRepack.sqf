@@ -1,4 +1,13 @@
 /*
+
+	NO FUNCIONA CORRECTAMENTE
+
+*/
+
+
+
+
+/*
   Descripcion:
     Cada caja equivale a un repack completo del mortero, busca en un radio de 10 metros un mortero y le llena la municion, luego borra la caja
 

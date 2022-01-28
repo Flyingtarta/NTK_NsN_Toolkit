@@ -1,3 +1,11 @@
+/*
+
+	NO FUNCIONA CORRECTAMENTE
+
+*/
+/*
+
+
 [
 	_this,											// Object the action is attached to
 	"<t color='#008100'>REPACKEAR VEHICULO</t>",										// Title of the action

@@ -18,7 +18,6 @@ findDisplay 12 displayCtrl 51 ctrlAddEventHandler ["Draw",{
       _zona = _x;
       _scale = ctrlMapScale (findDisplay 12 displayCtrl 51);
       _alpha = linearconversion [0.1,0.5,_scale,0,1,false];
-      systemchat str _zona;
       (_this#0) drawicon [
           "\a3\ui_f\data\igui\cfg\simpletasks\types\attack_ca.paa",
           [1,1,1,_alpha],
@@ -55,37 +54,53 @@ addMissionEventHandler ["EachFrame",{
   _Marcador ctrlSetStructuredText _SucturedText;
 
   _ancho = ctrlTextWidth _Marcador;
-  
-  /*
-  (allControls _display) params [
-    "_Fondo",
-    "_slideBlufor",
-    "_slideOpfor",
-    "_TiempoRestante",
-    "_Marcador"
-  ];
-  //actualizar TiempoRestante
-  _duracionTotalEvento = ((["Duracion",10] call BIS_fnc_getParamValue) * 60);
-  _timer = [((_duracionTotalEvento - time)/60)+.01,"HH:MM"] call BIS_fnc_timetostring;
-  _TiempoRestante ctrlSetText _timer;
-
-  //marcador
-  _diffB = Marcador get "diffBlufor";
-  _diffO = Marcador get "diffOpfor";
-
-  //(format ["%1 | %2",marcador get opfor, marcador get blufor]);
-  //"\A3\ui_f\data\map\markers\nato\b_unknown.paa" //blufor ""
-  //"\A3\ui_f\data\map\markers\nato\o_unknown.paa" //opfor
-
-  _banderaOpfor  = parseText "<img size='1.2' color='#FF1919' image='\A3\ui_f\data\map\markers\nato\b_unknown.paa'/>";
-  _banderaBLufor = parseText "<img size='1.2' color='#1A1AFF' image='\A3\ui_f\data\map\markers\nato\b_unknown.paa'/>";
-  _SucturedText  = composeText [_banderaOpfor, _banderaBlufor,lineBreak, str (marcador get opfor) ,"   |   ",str (marcador get blufor)];
-  _Marcador ctrlSetStructuredText _SucturedText;
-
-  //sliders
-  _diffB = Marcador get "diffBlufor";
-  _diffO = Marcador get "diffOpfor";
-  _slideBlufor progressSetPosition _diffB;
-  _slideOpfor progressSetPosition _diffO;
-  */
 }];
+
+/*
+  Verifica que este dentro del area y una distancia maxima de 2 km de un sector aliado ( para evitar partizanos)
+*/
+
+private _pos2marker = (zonas apply {getMarkerPos _x})  createHashMapFromArray zonas;
+_advertencia = 0;
+localnamespace setvariable ["advertencia",0];
+
+_blur = ppEffectCreate ["DynamicBlur",500];
+_blur ppEffectEnable false;
+_blur ppEffectAdjust [1.5];
+_blur ppEffectCommit 0;
+
+while {true} do {//vidas
+
+  sleep 1;
+
+  if ( !(alive player) ) exitWith {}; //revisa unicamente si esta vivo
+
+  //Verificamos que este dentro del area
+  _advertencia = localnamespace getvariable ["advertencia",0];
+  if !(player inarea RabArea) then {
+    _advertencia = localnamespace getvariable ["advertencia",0];
+    localnamespace setvariable ["advertencia",(_advertencia+1)];
+    _blur ppEffectEnable true;
+  }else{
+    _blur ppEffectEnable false;
+    localnamespace setvariable ["advertencia",0];
+    _zonasAliadas = zonas apply {
+      if ( ((missionNamespace getvariable _x) get "bando") isequalto (side player) ) then {
+        getMarkerPos _x
+      }else{
+        nil
+      };
+    };
+    _zonasAliadas = _zonasAliadas select {!isnil {_x}};
+
+    _zonaMasCercana = [_zonasAliadas,player] call bis_fnc_nearestposition;
+    _zonaMasCercana = _pos2marker get _zonaMasCercana;
+
+  };
+
+  if ( _advertencia >= 30 ) then {
+    localnamespace setvariable ["advertencia",0];
+    _ammo = createvehicle ["Sh_82mm_AMOS", (getpos player) vectoradd [0,0,100], [], 10,"FLY"];
+    _ammo setVelocity [0,0,-30];
+  };
+};

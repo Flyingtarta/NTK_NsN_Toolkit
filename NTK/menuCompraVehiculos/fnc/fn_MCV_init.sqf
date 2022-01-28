@@ -40,7 +40,7 @@ findDisplay 46 displayAddEventHandler ["KeyDown", {
 	(findDisplay 1314 ) closeDisplay 2;
 	};
 }];
-//16.8575
+
 
 //luego del tiempo de espera, chau menu
 _menuDeCompra spawn {
