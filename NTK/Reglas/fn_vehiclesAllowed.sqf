@@ -2,9 +2,6 @@
   Only units with the trait "apoyo" can be driver/pilot of vehicles
 
   Solamente se puede manejar un vehiclo pasados 10/20 minutos
-
-  TODO:
-    menu de compra agregar variable para que lo pueda usar una infanteria o no
 */
 
 player addEventHandler ["GetInMan",{
@@ -22,13 +19,8 @@ player addEventHandler ["GetInMan",{
       Hint "Tu rol no te permite manejar este vehiculo" ;moveout _unit;
     };
   };
-
 }];
 
-/*
-TODO:
-  NO FUNCIONA AL CAMBIAR DE ASIENTO
-*/
 
 player addEventHandler ["SeatSwitchedMan", {
  params ["_vehicle", "_unit1", "_unit2"];

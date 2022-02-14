@@ -15,8 +15,9 @@ class marcador_RAB {
 			//w = 0.299062 * safezoneW;
 			w = 0.15 * safezoneW;
 			h = 0.066 * safezoneH;
-			colorBackground[] = {0,0,0,0.7};
-			colorFrame[] = {0,0,0,0};
+			colorBackground[] = {0.08,0.26,0.31,0.7};
+
+			colorFrame[] = {0,0,0,1};
 			class Attributes
 			{
 				align = "center";

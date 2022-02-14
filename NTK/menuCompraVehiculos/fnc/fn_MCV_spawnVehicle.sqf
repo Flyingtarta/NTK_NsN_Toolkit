@@ -22,13 +22,12 @@ if (isnil "_pos") then { //
   _pos = (screenToWorld (getMousePosition)) vectoradd [0,0,1];
 };
 
-
-
-
 //_newveh = _classname createvehicle (
 _newveh = createvehicle [_classname,_pos,[],0,"NONE"];
 _newveh setdir (getdir _shop);
+_newveh setVectorUp (surfaceNormal _pos);
 _newveh allowDamage false;
+_newveh disableTIEquipment false;
 
 if (_infCanUSe) then { _newveh setvariable ["NSN_FNC_infCanUse",true,true]};
 
@@ -36,9 +35,14 @@ if (_infCanUSe) then { _newveh setvariable ["NSN_FNC_infCanUse",true,true]};
 for "_i" from 0 to 50 do {
   if ( (getpos _newveh) distance2d _pos > 1) then {
     _newveh setpos _pos;
-    _newveh setvectorup [0,0,1];
+    _newveh setVectorUp (surfaceNormal _pos);
     _newveh setdir (getdir _shop);
   };
   sleep 0.1;
 };
-_newveh allowDamage true;
+
+if (_newveh iskindof "StaticMortar" || _newveh isKindOf "StaticWeapon") then {
+  _newveh allowDamage false;
+}else{
+  _newveh allowDamage true;
+};

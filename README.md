@@ -26,8 +26,13 @@ Pegar dentro de la carpeta de la mision todo lo que contiene este repositorio
 
 ## Funciones pensadas a futuro
 
-- Dialog de "compra" de vehiculos con puntos
+
+- Caja de cambio de rol
+- Limite de maximo de roles
+- Caja de repack de inventario
+
+listo - Dialog de "compra" de vehiculos con puntos
 - Mejoras para logistica ( mayor facilidad de mover cajas
-- Mejora en Repack para vehiculos y morteros (80%)
-- Respawnean lejos y se los mueve a base una vez que sean > 4
-- Debug de vehiculos por medio de accion de ACE
+80% - Mejora en Repack para vehiculos y morteros (80%)
+0%- Respawnean lejos y se los mueve a base una vez que sean > 4
+0%- Debug de vehiculos por medio de accion de ACE

@@ -19,14 +19,19 @@ class NsNReglas {
 class Common {
   file = "NTK\common";
   class diferenciaBandosEnArea {};
+  class notificacion_fueraDelArea {};
 };
 
 class KOL {
   file = "NTK\KOL";
-  class mortarEasyRepack {};
-  class ammoBoxEasyMove  {};
-  class heliEasyRepack   {};
-  class vehicleRepack    {};
+  class mortarEasyRepack    {};
+  class buyAmmoBox          {};
+  class changeRolBox        {};
+  class easyRepackPlayers   {};
+  class easyRepackTurrets   {};
+  class heliEasyRepack      {};
+  class ammoBoxEasyMove     {};
+  class vehicleRepack       {};
 };
 
 class MCV {

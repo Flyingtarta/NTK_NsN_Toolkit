@@ -2,12 +2,11 @@
 NSN_FNC_RAB_draw_zones
 
 Dibuja la zona de combate, basada en un trigger de area cuadrada que nos da el tamaño y centro
-
-
 */
 
 //{deleteMarker _x} foreach allMapMarkers;
-if ( isDedicated || !(isServer) ) exitwith {};
+//if ( isDedicated || !(isServer) ) exitwith {};
+if (!isserver) exitwith {};
 
 params ["_area",["_grid",1000],["_deadZone",True]];
 _zonas = zonas;
@@ -52,3 +51,4 @@ for "_x" from 1 to _ladox do {
 	};
 };
 zonas = _zonas;
+publicVariable "zonas";

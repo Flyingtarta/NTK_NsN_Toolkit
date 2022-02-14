@@ -6,8 +6,9 @@ SERVERSIDE
 
 */
 systemchat str "RAB | gameplay...ok!";
-if ( isDedicated || !(isServer) ) exitwith {};
 
+if (!isserver) exitwith {};
+//if ( isDedicated || !(isServer) ) exitwith {};
 
 Marcador = createHashMapFromArray [[opfor,0], [blufor,0]];
 publicVariable "Marcador";
@@ -15,11 +16,18 @@ publicVariable "Marcador";
 // tiempo de alto el fuego y preparacion
 private _tiempoDePreparacion = (["Preparacion",10] call BIS_fnc_getParamValue) * 60;
 private _tiempoDeAltoElFuego = (["AltoElFuego",20] call BIS_fnc_getParamValue) * 60;
+
+settimeMultiplier 0;
+waituntil {sleep 1;time > _tiempoDePreparacion};
+
+settimeMultiplier 1;
+
+
 waituntil { //Espera que pase el tiempo de alto el fuego y de preparacion
-  time > (_tiempoDePreparacion + _tiempoDeAltoElFuego)
+  sleep 1;time > _tiempoDeAltoElFuego
 };
 
-
+["","Fin de Alto el Fuego"] remoteexec ["hint",allPlayers];
 /*
 Mensaje de que termino el alto el fuego
 */
@@ -47,12 +55,12 @@ private _actualizaMarcador = {
   publicVariable "Marcador";
 };
 
-
+publicVariable "zonas";
 _zonas = zonas;
 _duracionTotalEvento = ((["Duracion",120] call BIS_fnc_getParamValue) * 60);
 
-while {sleep 1; time <= _duracionTotalEvento } do {
-
+while {sleep 60; time <= _duracionTotalEvento } do {
+  publicVariable "zonas";
   {
     _zona = _x;
     _data =missionNamespace getvariable _zona;
@@ -96,3 +104,19 @@ while {sleep 1; time <= _duracionTotalEvento } do {
 /*
 Declara ganador y perdedor
 */
+private _puntosOpfor  = Marcador get opfor;
+private _puntosBlufor = Marcador get blufor;
+
+ if (_puntosOpfor isequalto _puntosBlufor) then {//empate
+   ["end1", true] remoteexec ["BIS_fnc_endMission",0];
+ }else{
+   if (_puntosOpfor > _puntosBlufor) then {//gana opfor
+     ["end1", true] remoteexec ["BIS_fnc_endMission",opfor];
+     ["end1", false] remoteexec ["BIS_fnc_endMission",blufor];
+     ["end1", false] remoteexec ["BIS_fnc_endMission",2];
+   }else{//gana blufor
+     ["end1", true] remoteexec ["BIS_fnc_endMission",blufor];
+     ["end1", false] remoteexec ["BIS_fnc_endMission",opfor];
+     ["end1", false] remoteexec ["BIS_fnc_endMission",2];
+   };
+ };

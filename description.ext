@@ -1,9 +1,11 @@
-/*onLoadIntro = "Nsn | Cabo Suelto";
-OnLoadName		= "Nsn | Cabo Suelto";
+onLoadIntro = "Nsn | Cementerio de elefantes";
+OnLoadName		= "Nsn | Cementerio de elefantes";
 OnLoadMission	= "";
 loadScreen		= "intro.jpg";
 briefingName = "";
-*/
+
+
+
 #include "cfgfuctions.hpp"
 respawnOnStart = -1;
 
@@ -12,6 +14,7 @@ respawnOnStart = -1;
 class RscTitles
 {
 	#include "mission\RAB\gui\marcador.hpp"
+	#include "NTK\common\Notificacion\rcsNotificacion.hpp"
 };
 
 #include "NTK\ntk_gui.hpp"
@@ -20,8 +23,8 @@ class params {
   class Preparacion
   {
     title = "Tiempo preparacion";
-    texts[] = {"0","2 minutos","5 minutos","10 minutos","20 minutos"};
-    values[] = {0.1,2,5,10,20};
+    texts[] = {"0","2 minutos","5 minutos","10 minutos","20 minutos","30 minutos","40 minutos"};
+    values[] = {0.1,2,5,10,20,30,40};
     default = 10;
   };
   class AltoElFuego{
@@ -35,7 +38,7 @@ class params {
     Title = "Cantidad de reapariciones por persona";
     texts[] = {"ninguna","1","2","3","5","Sin limite"};
     values[] = {0,1,2,3,5,-100};
-    default = 3;
+    default = 2;
   };
   class TiempoEntreZonas {
     Title = "Tiempo entre activacion de zonas";

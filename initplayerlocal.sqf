@@ -19,7 +19,7 @@ _tiempoPreparacion = ["Preparacion",10] call BIS_fnc_getParamValue;
 [] spawn nsn_fnc_MCV_init;
 
 ///////////////////////////Esto siempre al final////////////////////////////////
-[1000,60*_tiempoPreparacion] call nsn_fnc_PrepareTime;
+[200,60*_tiempoPreparacion] call nsn_fnc_PrepareTime;
 systemchat "NTK | PreparationTime...OK!";
 sleep 3;
 call nsn_fnc_NoLonewolf;

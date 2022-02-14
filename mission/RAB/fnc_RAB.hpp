@@ -6,5 +6,4 @@ class NsN_ResistAndBite {
   class RAB_gameplay       {};
   class RAB_init           {postinit = 1};
   class RAB_initPlayer     {};
-
 };
