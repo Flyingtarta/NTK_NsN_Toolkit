@@ -18,6 +18,7 @@ Output:
 
 params [ ["_Radius",100] ,["_preparationTime", 120] ];
 
+
 if (time > _preparationTime) exitwith {}; //if has an exeption, this wont apply
 sleep 1;
 //saves start position
@@ -59,6 +60,7 @@ while {_preparationTime > time } do { // in preparation phase
   };
   sleep 1;
 };
+
 deletemarkerlocal _mk;
 player removeEventHandler ["Fired",_eh];
 

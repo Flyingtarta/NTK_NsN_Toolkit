@@ -1,11 +1,13 @@
 /*
 
-  - Verifica que no se salga del area
-  - Agrega effecto si se sale del area
-  - UI
+  - Chaks that player inside the gamezone
+  - if player goes out, a notification pop-up
+  - Scoreboard when map/watch opened
 
 */
 systemchat str "RAB | initPlayer...ok!";
+if (isServer) exitwith {};
+
 /*
 findDisplay 12 displayCtrl 51 ctrlAddEventHandler ["Draw",{
 
@@ -32,6 +34,8 @@ findDisplay 12 displayCtrl 51 ctrlAddEventHandler ["Draw",{
 }];
 */
 
+
+// Scoreboard
 addMissionEventHandler ["EachFrame",{
   disableSerialization;
   if !( visibleMap || visibleWatch ) exitWith {
@@ -62,9 +66,6 @@ addMissionEventHandler ["EachFrame",{
     _timer = [((_duracionTotalEvento - time)/60)+.01,"HH:MM"] call BIS_fnc_timetostring;
   };
 
-
-
-
   _banderaOpfor  = parseText "<img size='2' color='#FF1919' image='\A3\ui_f\data\map\markers\nato\b_unknown.paa'/>";
   _banderaBLufor = parseText "<img size='2' color='#1A1AFF' image='\A3\ui_f\data\map\markers\nato\b_unknown.paa'/>";
 
@@ -76,9 +77,14 @@ addMissionEventHandler ["EachFrame",{
 
   _ancho = ctrlTextWidth _Marcador;
 }];
+
+
+
 /*
-  Verifica que este dentro del area y una distancia maxima de 2 km de un sector aliado ( para evitar partizanos)
+  Veryfies that its inside the game area - Probably ill change it in the future
 */
+
+
 private _pos2marker = (zonas apply {getMarkerPos _x})  createHashMapFromArray zonas;
 _advertencia = 0;
 localnamespace setvariable ["advertencia",0];
@@ -123,7 +129,7 @@ while { true } do {
     */
   };
 
-  if ( _advertencia >= 30 ) then {
+  if ( _advertencia >= 30 ) then { //if its keep outside the area, a mortar fall over its head :3
     localnamespace setvariable ["advertencia",0];
     _ammo = createvehicle ["Sh_82mm_AMOS", (getpos player) vectoradd [0,0,100], [], 10,"FLY"];
     _ammo setVelocity [0,0,-30];

@@ -1,6 +1,6 @@
 /*
 
-
+	Recharge ammo on turrets and mortars, dont work propperly on mortars 
 
 */
 [

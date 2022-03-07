@@ -1,38 +1,32 @@
 /*
+ - SERVERSIDE -
 
-Script engargado del gameplay
-
-SERVERSIDE
+ Server side script of the game mode
 
 */
 systemchat str "RAB | gameplay...ok!";
 
-if (!isserver) exitwith {};
+if (!isserver) exitwith {}; //only on server
 //if ( isDedicated || !(isServer) ) exitwith {};
 
-Marcador = createHashMapFromArray [[opfor,0], [blufor,0]];
+Marcador = createHashMapFromArray [[opfor,0], [blufor,0]]; // score tracker
 publicVariable "Marcador";
 
 // tiempo de alto el fuego y preparacion
 private _tiempoDePreparacion = (["Preparacion",10] call BIS_fnc_getParamValue) * 60;
 private _tiempoDeAltoElFuego = (["AltoElFuego",20] call BIS_fnc_getParamValue) * 60;
-
-settimeMultiplier 0;
-waituntil {sleep 1;time > _tiempoDePreparacion};
-
-settimeMultiplier 1;
-
-
 waituntil { //Espera que pase el tiempo de alto el fuego y de preparacion
-  sleep 1;time > _tiempoDeAltoElFuego
-};
+  time > (_tiempoDePreparacion + _tiempoDeAltoElFuego)
+}; //script starts after prep time and cease fire
 
-["","Fin de Alto el Fuego"] remoteexec ["hint",allPlayers];
+
 /*
-Mensaje de que termino el alto el fuego
+TODO: add cease-fire notification
 */
 
-//Funcion de actualizador de marcador
+
+
+//local function to update the scoreboard
 private _actualizaMarcador = {
   _blufor = { ((missionNamespace getVariable _x) get "bando") isequalto blufor} count _zonas;
   _opfor  = { ((missionNamespace getVariable _x) get "bando") isequalto opfor } count _zonas;
@@ -56,21 +50,21 @@ private _actualizaMarcador = {
 };
 
 publicVariable "zonas";
-_zonas = zonas;
-_duracionTotalEvento = ((["Duracion",120] call BIS_fnc_getParamValue) * 60);
+_zonas = zonas; //zones are each "block"
+_duracionTotalEvento = ((["Duracion",120] call BIS_fnc_getParamValue) * 60); // Max event duration
 
-while {sleep 60; time <= _duracionTotalEvento } do {
-  publicVariable "zonas";
+while {sleep 1; time <= _duracionTotalEvento } do {
+  //publicVariable "zonas"; //<------------------ i did this beacuse for some reason the variable wasnt broadcasted correcly and i dont know why
   {
     _zona = _x;
-    _data =missionNamespace getvariable _zona;
+    _data = missionNamespace getvariable _zona;
     if (!isnil {_data}) then {
-      //verifica si se capturo
+      //verifica si se capturo - Checks if its captured
       _diff = [_data get "pos",0,_zona] call nsn_fnc_diferenciaBandosEnArea;
       _diff params ["_ratio","_bandoDom"];
       _owner = _data get "bando";
 
-      //Si esta sin capturar
+      //Si esta sin capturar - if its a uncaptured zone
       if (_owner isequalto sideUnknown) then {
         if (_bandoDom isequalto sideUnknown) then {
             _zona setmarkercolor ("color" + str(_bandoDom));
@@ -84,39 +78,36 @@ while {sleep 60; time <= _duracionTotalEvento } do {
       }else{
         //Si estan intentando capturar
         if (_owner isnotequalto _bandoDom && _bandoDom isnotequalto sideUnknown) then {
-          _vecinoMismoBando = [_zona,_bandoDom] call NSN_FNC_RAB_canCaptureZone;
-          if (_ratio >= 1.5 && _vecinoMismoBando ) then {//captura
+          _vecinoMismoBando = [_zona,_bandoDom] call NSN_FNC_RAB_canCaptureZone; //checks if its capturable (an direct neibor need to be friendly )
+          if (_ratio >= 1.5 && _vecinoMismoBando ) then {//captura - you need a ratio of 1:1.5 to be able to capture the zone
             /*
             Falta verficiar que pueda captuarr por vecino
             */
             _data set ["bando",_bandoDom];
             _zona setmarkercolor ("color" + str(_bandoDom));
-            missionNamespace setvariable [_zona,_data,true];
+            missionNamespace setvariable [_zona,_data,true]; //save all data of the zone
           };
         };
       };//if (_owner isequalto sideUnknown) then
 
     };
   }foreach _zonas;
-  [] call _actualizaMarcador;
-  publicVariable "Marcador";
+  [] call _actualizaMarcador; //just updates de scoreboard
+  publicVariable "Marcador"; //Broadcast the new scoreboard value
 };
 /*
-Declara ganador y perdedor
+Declara ganador y perdedor - after times up, checks the winner side, for some reason, it didnt work, not sure why
 */
 private _puntosOpfor  = Marcador get opfor;
 private _puntosBlufor = Marcador get blufor;
-
  if (_puntosOpfor isequalto _puntosBlufor) then {//empate
-   ["end1", true] remoteexec ["BIS_fnc_endMission",0];
+   ["end1", true] remoteexec ["BIS_fnc_endMission",allPlayers];
  }else{
    if (_puntosOpfor > _puntosBlufor) then {//gana opfor
      ["end1", true] remoteexec ["BIS_fnc_endMission",opfor];
      ["end1", false] remoteexec ["BIS_fnc_endMission",blufor];
-     ["end1", false] remoteexec ["BIS_fnc_endMission",2];
    }else{//gana blufor
      ["end1", true] remoteexec ["BIS_fnc_endMission",blufor];
      ["end1", false] remoteexec ["BIS_fnc_endMission",opfor];
-     ["end1", false] remoteexec ["BIS_fnc_endMission",2];
    };
  };

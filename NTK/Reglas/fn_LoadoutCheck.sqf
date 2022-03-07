@@ -1,6 +1,6 @@
 /*
   Description:
-    Setea como maximo en el loadout, lo que se tiene al principio
+    Dont allow you to carry more magazines you have at start 
 
 */
 

@@ -1,3 +1,9 @@
+/*
+  Used on respawn limit per player 
+
+*/
+
+
 private _uid = getPlayerUID player;
 
 _vidas = ["vidas",2] call BIS_fnc_getParamValue;

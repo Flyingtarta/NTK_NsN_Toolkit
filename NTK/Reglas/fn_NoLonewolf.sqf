@@ -24,14 +24,14 @@ _blur ppEffectCommit 5;
 missionNamespace setvariable ["NSN_blurEffect",_blur];
 
 While {true} do {
-  if (alive player && ((side player) isnotequalto civilian)) then { //!(vehicle player iskindof "air") ) then { //if its alive and not civilean
+  if (alive player && ((side player) isnotequalto civilian) && !(vehicle player iskindof "air") ) then { //if its alive and not civilean
     _aliados = playableUnits select {(side _x isequalto side player) && (alive _x) && (_x isnotequalto player)}; //filter to all alive allies
-    _lonewolf = (_aliados findif { _x distance2d player < 150 }) isequalto -1;
-    _inbase = (player distance2d _base) < 300;
+    _lonewolf = (_aliados findif { _x distance2d player < 200 }) isequalto -1;
+    _inbase = (player distance2d _base) < 500;
     if (_lonewolf && !_inbase) then {
         player setvariable ["NSN_VAR_LONEWOLF",true,true];
 
-        if ( weaponLowered player || !(isnull (objectParent player)) ) then {
+        if ( weaponLowered player && isnull (objectParent player) ) then {
             HintSilent "Estas haciendo lonewolf\nReagrupate con tus compañeros o retirate a base";
             _blur ppEffectEnable false;
         }else{

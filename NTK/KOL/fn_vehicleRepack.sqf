@@ -1,6 +1,6 @@
 /*
 
-	NO FUNCIONA CORRECTAMENTE
+	Reaload vehicles AMMO, dont work on RHS TANKS 
 
 */
 /*

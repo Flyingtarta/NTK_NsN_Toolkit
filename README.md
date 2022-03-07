@@ -23,16 +23,12 @@ Pegar dentro de la carpeta de la mision todo lo que contiene este repositorio
 
 - Limitador de vidas por persona
 
+- Dialog de "compra" de vehiculos con puntos
+
 
 ## Funciones pensadas a futuro
 
-
-- Caja de cambio de rol
-- Limite de maximo de roles
-- Caja de repack de inventario
-
-listo - Dialog de "compra" de vehiculos con puntos
-- Mejoras para logistica ( mayor facilidad de mover cajas
-80% - Mejora en Repack para vehiculos y morteros (80%)
-0%- Respawnean lejos y se los mueve a base una vez que sean > 4
-0%- Debug de vehiculos por medio de accion de ACE
+- Mejoras para logistica ( mayor facilidad de mover cajas)
+- Mejora en Repack para vehiculos y morteros (50%)
+- Respawnean lejos y se los mueve a base una vez que sean > 4
+- Debug de vehiculos por medio de accion de ACE

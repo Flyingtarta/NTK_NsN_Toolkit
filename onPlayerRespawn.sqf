@@ -1,4 +1,7 @@
+/*
+  Used on respawn limit per player
 
+*/
 private _uid = getPlayerUID player;
 player setvariable ["BandoOriginal",side player,true];
 player setvariable ["RespawnTime",time,true];
@@ -13,12 +16,12 @@ player setvariable ["RespawnTime",time,true];
 
   if (_vidas > -1) then {
     [_vidas,{
-      cutText [ str (formatText ["<t color='#ff0000' size='2'> Te quedan %1 respawns </t>",_this]), "PLAIN DOWN", -1, true, true];
+      cutText [ str (formatText ["<t color='#ff0000' size='2'> Te quedan %1 vidas </t>",_this]), "PLAIN DOWN", -1, true, true];
     }]remoteexec["call",remoteExecutedOwner];
 
   }else{
     {
-      cutText ["<t color='#ff0000' size='2'> No te quedan mas respawns </t>","PLAIN DOWN", -1, true, true];
+      cutText ["<t color='#ff0000' size='2'> No te quedan mas vidas </t>","PLAIN DOWN", -1, true, true];
       hideObjectGlobal player;
       ["Initialize", [player, [], true ]] call BIS_fnc_EGSpectator;
     }remoteexec["call",remoteExecutedOwner];

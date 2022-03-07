@@ -2,9 +2,6 @@
 Locality:
   EXECUTE ON SERVER
 
-Author:
-  [calaveras] FlyingTarta
-
 Description:
   Global markers will be deleted unless is the logged admin
 

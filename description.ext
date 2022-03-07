@@ -23,22 +23,22 @@ class params {
   class Preparacion
   {
     title = "Tiempo preparacion";
-    texts[] = {"0","2 minutos","5 minutos","10 minutos","20 minutos","30 minutos","40 minutos"};
-    values[] = {0.1,2,5,10,20,30,40};
-    default = 10;
+    texts[] = {"0","2 minutos","5 minutos","10 minutos","20 minutos"};
+    values[] = {0.1,2,5,10,20};
+    default = 2;
   };
   class AltoElFuego{
     title = "Tiempo Alto el Fuego";
     texts[] = {"0","2 minutos","5 minutos","10 minutos","20 minutos","30 minutos","40 minutos"};
     values[] = {0.1,2,5,10,20,30,40};
-    default = 20;
+    default = 2;
   };
   class Vidas
   {
     Title = "Cantidad de reapariciones por persona";
     texts[] = {"ninguna","1","2","3","5","Sin limite"};
     values[] = {0,1,2,3,5,-100};
-    default = 2;
+    default = 3;
   };
   class TiempoEntreZonas {
     Title = "Tiempo entre activacion de zonas";
