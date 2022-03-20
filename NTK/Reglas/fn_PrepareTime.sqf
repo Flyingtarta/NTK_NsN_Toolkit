@@ -16,19 +16,19 @@ Output:
   None
 */
 
-params [ ["_Radius",100] ,["_preparationTime", 120] ];
+params [ ["_Radius",100]];
 
-
-if (time > _preparationTime) exitwith {}; //if has an exeption, this wont apply
+_end_preparation_time = missionnamespace getvariable ["NSN_VAR_PrepareTime",0]; //Server time instaed of time
+if (servertime > _end_preparation_time) exitwith {}; //if has an exeption, this wont apply
 sleep 1;
 //saves start position
 private _beginPos = getpos player;
 
-_time = _preparationTime;
+_time = _end_preparation_time;
 
 //if gets in late, shows same time left
 if (time > 1) then {
-  _time = _preparationTime - time;
+  _time = _end_preparation_time - time;
 };
 
 //Timer variable
@@ -50,8 +50,9 @@ _eh = player addeventhandler ["Fired",{
   }];
 
 
-while {_preparationTime > time } do { // in preparation phase
+while {_end_preparation_time > servertime } do { // in preparation phase
   _time = _time - 1;
+  _end_preparation_time = missionnamespace getvariable ["NSN_VAR_PrepareTime",0];
   hintSilent format["Tiempo de preparacion: \n %1", [((_time)/60)+.01,"HH:MM"] call BIS_fnc_timetostring];
   if (player distance2d _beginPos > _radius) then { //if its too far, its teleported
     if !(player getvariable ["NSN_VAR_PrepTime_exept",false]) then {
@@ -60,9 +61,6 @@ while {_preparationTime > time } do { // in preparation phase
   };
   sleep 1;
 };
-
 deletemarkerlocal _mk;
 player removeEventHandler ["Fired",_eh];
-
-
 Hint "TIEMPO PREPARACION FINALIZADO";

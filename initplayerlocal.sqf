@@ -19,8 +19,8 @@ _tiempoPreparacion = ["Preparacion",10] call BIS_fnc_getParamValue;
 [] spawn nsn_fnc_MCV_init; // Vehicle Shop
 
 ///////////////////////////Esto siempre al final////////////////////////////////
-[1000,60*_tiempoPreparacion] call nsn_fnc_PrepareTime;
+[1000] call nsn_fnc_PrepareTime;
 systemchat "NTK | PreparationTime...OK!";
 sleep 3;
-call nsn_fnc_NoLonewolf; //Lonewolf script 
+call nsn_fnc_NoLonewolf; //Lonewolf script
 systemchat "NTK | Lonewolf...OK!";

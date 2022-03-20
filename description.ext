@@ -1,15 +1,18 @@
-onLoadIntro = "Nsn | Cementerio de elefantes";
-OnLoadName		= "Nsn | Cementerio de elefantes";
+onLoadIntro = "NSN | Guerra de los TOYOTA";
+OnLoadName		= "NSN | Guerra de los TOYOTA";
 OnLoadMission	= "";
 loadScreen		= "intro.jpg";
 briefingName = "";
 
 
+#include "common.hpp"
 
 #include "cfgfuctions.hpp"
+
+#include "rcs\menu_radial\ui\menu_radial.hpp"
 respawnOnStart = -1;
 
-#include "common.hpp"
+
 
 class RscTitles
 {

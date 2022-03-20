@@ -44,9 +44,9 @@ findDisplay 46 displayAddEventHandler ["KeyDown", {
 
 //luego del tiempo de espera, chau menu
 _menuDeCompra spawn {
+	_end_preparation_time = missionnamespace getvariable ["NSN_VAR_PrepareTime",0];
 	_menuDeCompra = _this;
-	_tiempoPreparacion = ["Preparacion",10] call BIS_fnc_getParamValue;
-	waituntil {time > (_tiempoPreparacion*60)};
+	waituntil {servertime > _end_preparation_time};
 	player removeAction _menuDeCompra;
 	if ( !isnull (findDisplay 1314)) then {
 		(findDisplay 1314) closeDisplay 2;

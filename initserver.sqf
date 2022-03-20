@@ -4,5 +4,6 @@ ACE_maxWeightDrag = 80000;
 [] call NSN_fnc_NoGlobalMarks; //remove global marks
 
 _tiempoPreparacion = ["Preparacion",10] call BIS_fnc_getParamValue;
-waituntil {_tiempoPreparacion*60 < time};
-systemchat "paso tiempo de espera de preparacion"; 
+_end_preparation_time = servertime + (_tiempoPreparacion*60);
+missionnamespace setvariable ["NSN_VAR_PrepareTime",_end_preparation_time,true];
+//waituntil {_end_preparation_time < servertime };

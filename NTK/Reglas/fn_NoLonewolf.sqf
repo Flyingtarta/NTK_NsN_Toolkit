@@ -6,7 +6,8 @@ Decription:
   Gives you a warning that you are doing lonewolf and show you an icon on the top right, and camera get blurred when aiming down sight.
 
 
-//wip
+Fix:
+  Setvariable 
 
 */
 
@@ -29,7 +30,9 @@ While {true} do {
     _lonewolf = (_aliados findif { _x distance2d player < 200 }) isequalto -1;
     _inbase = (player distance2d _base) < 500;
     if (_lonewolf && !_inbase) then {
-        player setvariable ["NSN_VAR_LONEWOLF",true,true];
+        if !(player getvariable ["NSN_VAR_LONEWOLF",false]) then {
+          player setvariable ["NSN_VAR_LONEWOLF",true,true];
+        };
 
         if ( weaponLowered player && isnull (objectParent player) ) then {
             HintSilent "Estas haciendo lonewolf\nReagrupate con tus compañeros o retirate a base";
@@ -39,9 +42,10 @@ While {true} do {
           _blur ppEffectEnable true;
         };
       }else{
-        player setvariable ["NSN_VAR_LONEWOLF",false,true];
+        if (player getvariable ["NSN_VAR_LONEWOLF",false]) then {
+          player setvariable ["NSN_VAR_LONEWOLF",false,true];
+        };
         _blur ppEffectEnable false;
-
       };
   }else{
     _blur ppEffectEnable false;
