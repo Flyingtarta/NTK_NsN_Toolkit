@@ -6,7 +6,7 @@
 
 */
 systemchat str "RAB | initPlayer...ok!";
-if (isServer) exitwith {};
+//if (isServer) exitwith {};
 
 /*
 findDisplay 12 displayCtrl 51 ctrlAddEventHandler ["Draw",{
@@ -47,23 +47,23 @@ addMissionEventHandler ["EachFrame",{
   _marcador = (allControls _display) select 0;
   _timer = "";
 
-  _tiempoDePreparacion = (["Preparacion",10] call BIS_fnc_getParamValue) * 60;
-  _tiempoDeAltoElFuego = (["AltoElFuego",20] call BIS_fnc_getParamValue) * 60;
+  _tiempoDePreparacion = missionNamespace getvariable ["NSN_VAR_EndPrepTime", ((["Preparacion",10] call BIS_fnc_getParamValue) * 60) ];
+  _tiempoDeAltoElFuego = _tiempoDePreparacion + (["AltoElFuego",20] call BIS_fnc_getParamValue) * 60;
 
 
-  if (time < _tiempoDeAltoElFuego) then {
-    if (time < _tiempoDePreparacion) then {
-      _timer = [((_tiempoDePreparacion - time)/60)+.01,"HH:MM"] call BIS_fnc_timetostring;
+  if (servertime < _tiempoDeAltoElFuego) then {
+    if (servertime < _tiempoDePreparacion) then {
+      _timer = [((_tiempoDePreparacion - servertime)/60)+.01,"HH:MM"] call BIS_fnc_timetostring;
       _timer =parseText format ["<t color='#BFBF00'> Preparacion: %1 <t/>",_timer];
     }else {
-      _tiempoDeAltoElFuego = (_tiempoDePreparacion + _tiempoDeAltoElFuego);
-      _timer = [((_tiempoDeAltoElFuego - time)/60)+.01,"HH:MM"] call BIS_fnc_timetostring;
+      _timer = [((_tiempoDeAltoElFuego - serverTime)/60)+.01,"HH:MM"] call BIS_fnc_timetostring;
       _timer = parseText format ["<t color='#BFBF00'> Alto el fuego: %1 <t/>",_timer];
     };
 
   }else{
-    _duracionTotalEvento = ((["Duracion",10] call BIS_fnc_getParamValue) * 60);
-    _timer = [((_duracionTotalEvento - time)/60)+.01,"HH:MM"] call BIS_fnc_timetostring;
+    //_duracionTotalEvento = ((["Duracion",10] call BIS_fnc_getParamValue) * 60);
+    _duracionTotalEvento = missionnamespace getvariable ["NSN_VAR_endTime",0];
+    _timer = [((_duracionTotalEvento - servertime)/60)+.01,"HH:MM"] call BIS_fnc_timetostring;
   };
 
   _banderaOpfor  = parseText "<img size='2' color='#FF1919' image='\A3\ui_f\data\map\markers\nato\b_unknown.paa'/>";

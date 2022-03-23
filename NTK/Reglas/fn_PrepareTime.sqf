@@ -28,7 +28,7 @@ _time = _end_preparation_time;
 
 //if gets in late, shows same time left
 if (time > 1) then {
-  _time = _end_preparation_time - time;
+  _time = _end_preparation_time - servertime;
 };
 
 //Timer variable

@@ -13,10 +13,11 @@ Marcador = createHashMapFromArray [[opfor,0], [blufor,0]]; // score tracker
 publicVariable "Marcador";
 
 // tiempo de alto el fuego y preparacion
-private _tiempoDePreparacion = (["Preparacion",10] call BIS_fnc_getParamValue) * 60;
+private _tiempoDePreparacion = servertime + (["Preparacion",10] call BIS_fnc_getParamValue) * 60;
 private _tiempoDeAltoElFuego = (["AltoElFuego",20] call BIS_fnc_getParamValue) * 60;
+missionNamespace setvariable ["NSN_VAR_EndPrepTime",_tiempoDePreparacion,true];
 waituntil { //Espera que pase el tiempo de alto el fuego y de preparacion
-  time > (_tiempoDePreparacion + _tiempoDeAltoElFuego)
+  servertime > (_tiempoDePreparacion + _tiempoDeAltoElFuego)
 }; //script starts after prep time and cease fire
 
 
@@ -51,9 +52,9 @@ private _actualizaMarcador = {
 
 publicVariable "zonas";
 _zonas = zonas; //zones are each "block"
-_duracionTotalEvento = ((["Duracion",120] call BIS_fnc_getParamValue) * 60); // Max event duration
-
-while {sleep 1; time <= _duracionTotalEvento } do {
+_duracionTotalEvento = servertime  + ((["Duracion",120] call BIS_fnc_getParamValue) * 60); // Max event duration
+missionnamespace setvariable ["NSN_VAR_endTime",_duracionTotalEvento,true];
+while {sleep 1; servertime <= _duracionTotalEvento } do {
   //publicVariable "zonas"; //<------------------ i did this beacuse for some reason the variable wasnt broadcasted correcly and i dont know why
   {
     _zona = _x;

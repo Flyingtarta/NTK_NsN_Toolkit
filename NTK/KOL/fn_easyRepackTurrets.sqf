@@ -1,6 +1,6 @@
 /*
 
-	Recharge ammo on turrets and mortars, dont work propperly on mortars 
+	Recharge ammo on turrets and mortars, dont work propperly on mortars
 
 */
 [
@@ -20,14 +20,14 @@
 		if (_turret isequalto []) exitWith { cutText ["<t color='#ff0000' size='3'>No hay montada o morteros cerca cerca (10m)</t>", "PLAIN DOWN", -1, true, true] };
 		private _turret = _turret#0;
 		if !(count (magazines _turret) < 3) exitwith {cutText ["<t color='#ff0000' size='3'> La montada tiene toda la municion </t>", "PLAIN DOWN", -1, true, true]};
-		_turret setvehicleammo 1;
+		_turret setVehicleAmmoDef 1;
 		cutText ["<t color='#008100' size='3'> montada Repackeada </t>", "PLAIN DOWN", -1, true, true];
 		deletevehicle _target;
 	},				// Code executed on completion
 	{},													// Code executed on interrupted
 	[],													// Arguments passed to the scripts as _this select 3
 	10,													// Action duration [s]
-	100,													// Priority
-	false,												// Remove on completion
+	100,												// Priority
+	false,											// Remove on completion
 	false												// Show in unconscious state
 ] call BIS_fnc_holdActionAdd;

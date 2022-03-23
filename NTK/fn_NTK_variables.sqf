@@ -6,7 +6,13 @@
   FONDOS para la compra de vehiculos
 -------------------------------------------*/
 
-missionnamespace setvariable ["NSN_VAR_FOUNDS",1000];
+//missionnamespace setvariable ["NSN_VAR_FOUNDS",1000];
+
+_fondos = ["puntosDeCompra",1000] call BIS_fnc_getParamValue;
+
+missionnamespace setvariable ["fondos_"+str(opfor) ,_fondos];
+missionnamespace setvariable ["fondos_"+str(blufor),_fondos];
+
 /*-------------------------------------------
   Variables de objeto de compra de vehiculos
 -------------------------------------------*/
