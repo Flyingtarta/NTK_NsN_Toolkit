@@ -120,7 +120,7 @@ while { true } do {
   } else {
 
     if !(player inarea RabArea) then {
-      _advertencia = localnamespace getvariable ["advertencia",0];
+      //_advertencia = localnamespace getvariable ["advertencia",0];
       localnamespace setvariable ["advertencia",(_advertencia+1)];
       _blur ppEffectEnable true;
       [] call NSN_fnc_notificacion_fueraDelArea;
@@ -128,19 +128,8 @@ while { true } do {
       _blur ppEffectEnable false;
       _display = uiNamespace getvariable ['rcsNotificacion_idd',displayNull];
       _display closeDisplay 1;
-      localnamespace setvariable ["advertencia",0];
-      /*
-      _zonasAliadas = zonas apply {
-        if ( ((missionNamespace getvariable _x) get "bando") isequalto (side player) ) then {
-          getMarkerPos _x
-        }else{
-          nil
-        };
-      };
-      _zonasAliadas = _zonasAliadas select {!isnil {_x}};
-      _zonaMasCercana = [_zonasAliadas,player] call bis_fnc_nearestposition;
-      _zonaMasCercana = _pos2marker get _zonaMasCercana;
-      */
+      if (_advertencia > 0) then {localnamespace setvariable ["advertencia",(_advertencia-1)];};
+
     };
 
     if ( _advertencia >= 30 ) then { //if its keep outside the area, a mortar fall over its head :3
