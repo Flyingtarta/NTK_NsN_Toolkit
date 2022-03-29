@@ -1,6 +1,6 @@
 /*
   Description:
-    Dosnt allow ppl to drive vehicles after 20 minutes after respawn 
+    Dosnt allow ppl to drive vehicles after 20 minutes after respawn
 
 */
 
@@ -9,7 +9,7 @@ player addEventHandler ["GetInMan",{
   if (_role isequalto "driver") then {
     _respawnTime = _unit getvariable ["RespawnTime",-1];
     if (_respawnTime isnotequalto -1) then {
-      _tiempoRestante = round (_respawnTime + 600 - time);
+      _tiempoRestante = round (_respawnTime + 600 - servertime);
       if ( _tiempoRestante > 0 ) exitwith {Hint format ["Tenes que esperar %1 minutos para poder manejar un vehiculo", ceil (_tiempoRestante/60)];moveout _unit};
     };
 
@@ -29,7 +29,7 @@ player addEventHandler ["SeatSwitchedMan", {
   if (_role isequalto "driver") then {
     private _respawnTime = player getvariable ["RespawnTime",-1];
     if (_respawnTime isnotequalto -1) then {
-      _tiempoRestante = round (_respawnTime + 600 - time);
+      _tiempoRestante = round (_respawnTime + 600 - servertime);
       if ( _tiempoRestante > 0 ) exitwith {Hint format ["Tenes que esperar %1 minutos para poder manejar un vehiculo", ceil (_tiempoRestante/60)];moveout _unit};
     };
     /*if !( _unit getvariable ["apoyo",false] || _vehicle getvariable ["NSN_FNC_infCanUse",false] ) then {

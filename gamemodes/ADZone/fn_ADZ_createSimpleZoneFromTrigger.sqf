@@ -58,9 +58,6 @@ private _capture_progress = 0;
 private _tiempoDeAltoElFuego = (["AltoElFuego",20] call BIS_fnc_getParamValue) * 60;
 waitUntil {missionnamespace getvariable ["NSN_VAR_endTime",-1] isNotEqualTo -1};
 waituntil {sleep 1; ((missionnamespace getvariable ["NSN_VAR_EndPrepTime",-1]) + _tiempoDeAltoElFuego )  < servertime };
-systemchat "Se prendio esta mierdaa";
-
-
 
 waitUntil { //waituntils some player are in the area
   sleep 1;

@@ -4,7 +4,7 @@
 */
 private _uid = getPlayerUID player;
 player setvariable ["BandoOriginal",side player,true];
-player setvariable ["RespawnTime",time,true];
+player setvariable ["RespawnTime",servertime,true];
 
 [[_uid,player],
 {
