@@ -15,7 +15,9 @@ how to use :
 
 params ["_trigger", ["_owner",sideUnknown] ,["_reward",100], ["_TargetCaptura",10] ];
 
+
 private _pos = getpos _trigger;
+
 private _area = triggerArea _trigger;
 private _name = triggerText _trigger;
 
@@ -47,9 +49,16 @@ if (_isrectangle) then {
   _capture_marker setmarkershape "ELLIPSE";
 };
 _capture_marker setmarkersize [0,0];
-
-
 private _capture_progress = 0;
+/*
+  ------------------------------------------------------------------------------
+                Waituntil cease fire ends
+  ------------------------------------------------------------------------------
+*/
+private _tiempoDeAltoElFuego = (["AltoElFuego",20] call BIS_fnc_getParamValue) * 60;
+waitUntil {missionnamespace getvariable ["NSN_VAR_endTime",-1] isNotEqualTo -1};
+waituntil {sleep 1; ((missionnamespace getvariable ["NSN_VAR_EndPrepTime",-1]) + _tiempoDeAltoElFuego )  < servertime };
+systemchat "Se prendio esta mierdaa";
 
 
 

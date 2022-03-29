@@ -1,4 +1,6 @@
+/*
 sleep 1;
+
 
 _weap = allunits apply {
 	_weapon = weapons _x;

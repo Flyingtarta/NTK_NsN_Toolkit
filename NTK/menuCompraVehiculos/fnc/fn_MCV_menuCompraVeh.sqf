@@ -26,12 +26,11 @@ if (_handler isequalto "lista_onLoad") then {
 };
 
 if (_handler isequalto "init") then {
-  addMissionEventHandler ["EachFrame",{
-    if (localNamespace setvariable ["onEachFrame_MCV",false]) exitwith {};
+  if (localNamespace setvariable ["onEachFrame_MCV",false]) exitwith {};
+  addMissionEventHandler ["EachFrame",{    
+    _fondos =  format['Fondos: %1',missionnamespace getvariable ["fondos_"+str(side player),0] ];
+    (finddisplay 1314 displayctrl 1001) ctrlSetText _fondos;
     localNamespace setvariable ["onEachFrame_MCV",true];
-
-
-
     if (isnull findDisplay 1314) exitwith { localNamespace setvariable ["NSN_VAR_VEHSELECT",objnull] };
 
 
@@ -99,9 +98,10 @@ if (_handler isequalto "menuCompraVeh_onClick") then {
               _controlInfoText ctrlSetText "Se elimino el vehiculo";
               _controlInfoText ctrlSetTextColor [0.8,0,0,1];
               //agregamos de nuevo los fondos
-              _fondos = missionnamespace getvariable ['NSN_VAR_FOUNDS',0];
-              missionNamespace setvariable ["NSN_VAR_FOUNDS",_fondos + _value,true];
-              _newText =  format['Fondos: %1',missionnamespace getvariable ['NSN_VAR_FOUNDS',0]];
+
+              _fondos = missionnamespace getvariable ["fondos_"+str(side player),0];
+              missionNamespace setvariable ["fondos_"+str(side player),_fondos + _value,true];
+              _newText =  format['Fondos: %1',missionnamespace getvariable ["fondos_"+str(side player),0] ];
               (finddisplay 1314 displayctrl 1001) ctrlSetText _newText;
             };//
           };
@@ -124,7 +124,11 @@ if (_handler isequalto "menuCompraVeh_onClick") then {
       _vehicles = (aviableVehicles get (side player));
       _value = (_vehicles get _classname) select 0;
       _infCanUSe = (_vehicles get _classname) select 1;
-      _fondos = missionnamespace getvariable ['NSN_VAR_FOUNDS',0];
+      //_fondos = missionnamespace getvariable ['NSN_VAR_FOUNDS',0];
+      _fondos = missionnamespace getvariable ["fondos_"+str(side player),0];
+
+
+
       if ( _value > _fondos) exitwith {hint "No te quedan mas fondos"};
       deletevehicle _veh;
       localNamespace setvariable ["NSN_VAR_VEHSELECT",objNull];
@@ -132,8 +136,8 @@ if (_handler isequalto "menuCompraVeh_onClick") then {
 
       [_classname,screenToWorld (getMousePosition),_infCanUSe] spawn NSN_fnc_MCV_spawnVehicle;
 
-      missionNamespace setvariable ["NSN_VAR_FOUNDS",_fondos - _value,true];
-      _newText =  format['Fondos: %1',missionnamespace getvariable ['NSN_VAR_FOUNDS',0]];
+      missionNamespace setvariable ["fondos_"+str(side player),_fondos - _value,true];
+      _newText =  format['Fondos: %1',missionnamespace getvariable ["fondos_"+str(side player),0] ];
       (finddisplay 1314 displayctrl 1001) ctrlSetText _newText ;
       //Pone en rojo los que no se pueden comprar mas
     };
@@ -144,9 +148,11 @@ if (_handler isequalto "menuCompraVeh_onClick") then {
 
   _vehicles = (aviableVehicles get (side player));
   {
-    
+
     _value = (_vehicles get _x) select 0;
-    _fondos = missionnamespace getvariable ['NSN_VAR_FOUNDS',0];
+    _fondos = missionnamespace getvariable ["fondos_"+str(side player),0];
+
+
 
     if (_fondos < _value) then {
       (findDisplay 1314 displayctrl 1500) lbSetcolor        [_forEachIndex, [0.4, 0.4, 0.4, 1] ];

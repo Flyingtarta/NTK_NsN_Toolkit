@@ -1,0 +1,36 @@
+- Aceleracion del tiempo
+- Repack de montadas funcionando en servidor 100% de las veces
+- Loadouts
+- Respawn en punto correcto
+- Respawn con loadout correcto
+- Paso del tiempo correcto (0.3x)
+- Pasadas 3 horas, que sea sufucuentemente visible
+- Condicion de final y que termine la partida correctamente
+- JIP de tiempo espera y alto el fuego correctos
+
+Limite de vidas:
+  - Que funcione y que oculte la unidad cuando se quedo sin respawn
+
+Menu de compra de comandante:
+  - JIP de puntos correcto
+  - JIP pueda comprar
+
+
+Grilla:
+  - Funcionamiento correcto de captura
+  - Funcionamiento crrecto de re-captura
+  - Habilitacion de zonas luego del alto el fuego
+
+
+Objetivos secundarios:
+  -Prueba de captura
+  -Prueba de pararcaptura
+  -Prueba de que de los puntos correctamente
+
+
+Cosas que faltan:
+  - Checkeo GPS en apoyo
+  - Revision loadouts
+  - fix Colores de los vehiculos
+  - Revisar control de vidas
+  - si es posible agregar si es que cambio de slot

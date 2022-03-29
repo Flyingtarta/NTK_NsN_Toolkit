@@ -25,8 +25,6 @@ waituntil { //Espera que pase el tiempo de alto el fuego y de preparacion
 TODO: add cease-fire notification
 */
 
-
-
 //local function to update the scoreboard
 private _actualizaMarcador = {
   _blufor = { ((missionNamespace getVariable _x) get "bando") isequalto blufor} count _zonas;
@@ -54,7 +52,7 @@ publicVariable "zonas";
 _zonas = zonas; //zones are each "block"
 _duracionTotalEvento = servertime  + ((["Duracion",120] call BIS_fnc_getParamValue) * 60); // Max event duration
 missionnamespace setvariable ["NSN_VAR_endTime",_duracionTotalEvento,true];
-while {sleep 1; servertime <= _duracionTotalEvento } do {
+while {sleep 60; servertime <= _duracionTotalEvento } do {
   //publicVariable "zonas"; //<------------------ i did this beacuse for some reason the variable wasnt broadcasted correcly and i dont know why
   {
     _zona = _x;

@@ -8,10 +8,10 @@
 
 //missionnamespace setvariable ["NSN_VAR_FOUNDS",1000];
 
-_fondos = ["puntosDeCompra",1000] call BIS_fnc_getParamValue;
+_fondos = ["puntosDeCompra",1500] call BIS_fnc_getParamValue;
 
-missionnamespace setvariable ["fondos_"+str(opfor) ,_fondos];
-missionnamespace setvariable ["fondos_"+str(blufor),_fondos];
+missionnamespace setvariable ["fondos_"+str(opfor) ,_fondos,true];
+missionnamespace setvariable ["fondos_"+str(blufor),_fondos,true];
 
 /*-------------------------------------------
   Variables de objeto de compra de vehiculos
@@ -21,30 +21,34 @@ missionnamespace setvariable ["fondos_"+str(blufor),_fondos];
 /*------------------------------------------------------------------------------
 //VEHICULOS BLUFOR
 ------------------------------------------------------------------------------*/
-private _blueVeh = createHashMapFromArray [
-// TRANSPORTE
-  ["UK3CB_CW_US_B_EARLY_M151_Jeep_Closed"   , [ 5  ,true ] ],
-  ["UK3CB_B_M939_Closed_HIDF"       	      , [ 10  ,true ]],
-
-  // ARMED-APC-IFV
-  ["UK3CB_B_M151_Jeep_HMG_HIDF" , [ 20  ,true  ] ],
-  ["UK3CB_ANA_B_M113_M2"        , [ 30  ,true  ] ],
-  ["UK3CB_ARD_B_BRDM2"     		  , [ 40  ,true  ] ],
-  ["UK3CB_ANA_B_BMP1"     		  , [ 100 ,false ] ],
-
-  // TANK
-  ["UK3CB_ANA_B_T55"      		  , [ 200  ,false ] ],
-  ["UK3CB_CW_US_B_EARLY_M60a1"  , [ 250  ,false ] ],
-  ["UK3CB_ANA_B_T72A"     		  , [ 300  ,false ] ],
-  ["UK3CB_ARD_B_T72BB"     		  , [ 350  ,false ] ],
-  // STATIC
-  ["UK3CB_ANA_B_SPG9"     		  , [ 30  ,true ] ],
-  ["UK3CB_ADM_O_2b14_82mm" 		  , [ 100 ,true ] ],
-  ["UK3CB_AAF_B_M2_MiniTripod"  , [ 10  ,true ] ],
-  ["UK3CB_AAF_B_M2_TriPod"     	, [ 10  ,true ] ],
-  ["rhs_KORD_VDV"     			    , [ 15  ,true ] ],
-  ["UK3CB_UN_I_Kornet"          , [ 100 ,true ] ]
-];
+private _blueVeh = createHashMapFromArray
+  // CHAD
+  [
+    // TRANSPORTE
+    ["UK3CB_TKA_B_UH1H"                , [30    , true] ],
+    ["UK3CB_ADM_B_V3S_Closed"   		   , [ 20   ,true ] ],
+    ["UK3CB_ADM_B_Hilux_Closed"      	 , [ 10   ,true ] ],
+    ["UK3CB_ADM_B_Hilux_Open"     	 	 , [ 10   ,true ] ],
+    // ARMED-APC-IFV
+    ["UK3CB_ADM_B_Hilux_Spg9"       	 , [ 15   ,true ] ],
+    ["UK3CB_ADM_B_Hilux_Zu23"    	 	 , [ 80   ,true ] ],
+    ["UK3CB_ADM_B_Hilux_Dshkm"     		 , [ 25   ,true ] ],
+    ["UK3CB_ADM_B_Hilux_Rocket"     	 , [ 50   ,false ] ],
+    ["UK3CB_ADM_B_Hilux_Rocket_Arty"     	 , [ 150  ,false ] ],
+    // TANK
+    ["UK3CB_ADM_B_T55"      		       , [ 275  ,false ] ],
+    // STATIC
+    ["UK3CB_ADM_B_D30"     			       , [ 100  ,true ] ],
+    ["UK3CB_ADM_B_SPG9"     		       , [ 75  ,true ] ],
+    ["UK3CB_ADM_B_2b14_82mm"     		   , [ 75  ,true ] ],
+    ["rhs_Kornet_9M133_2_msv"     		 , [ 80  ,true ] ]
+  ];
+  /*
+  // SUPPORT
+  ["UK3CB_ADM_B_V3S_Repair"     		  , [ 10  ,false ] ],
+  ["UK3CB_ADM_B_V3S_Refuel"      		  , [ 10  ,false ] ],
+  ["UK3CB_ADM_B_V3S_Reammo"    		    , [ 10  ,false ] ],
+  */
 
 /*------------------------------------------------------------------------------
 //VEHICULOS OPFOR
@@ -53,24 +57,29 @@ private _blueVeh = createHashMapFromArray [
 private _opfor =  createHashMapFromArray
   [
     // TRANSPORTE
-    ["UK3CB_CW_SOV_O_LATE_VDV_UAZ_Closed"   ,[ 5   ,true ] ],
-    ["UK3CB_CW_SOV_O_LATE_VDV_Ural"      	  ,[ 10  ,true ] ],
+    ["UK3CB_ARD_I_UAZ_Closed"  		, [10,true ] ],
+    ["rhs_gaz66_msv"  		 	      , [20,true ] ],
+    ["UK3CB_CW_SOV_O_LATE_Mi8AMT" , [100,true ] ],
+    ["UK3CB_ADA_O_Mi8AMT"         , [30,true] ],
     // ARMED-APC-IFV
-    ["UK3CB_CW_SOV_O_LATE_VDV_UAZ_MG"       ,[ 20   ,true ]],
-    ["UK3CB_CW_SOV_O_LATE_BTR40_MG"         ,[ 30   ,true ]],
-    ["rhs_btr70_vdv"     		 	              ,[ 40   ,true ]],
-    ["rhs_bmd1p"     			                  ,[ 100  ,false]],
+    ["rhs_bmp1p_msv"           	  , [100,true]],
+    ["rhs_btr70_msv"         		  , [50,true ]],
+    ["UK3CB_O_G_MTLB_Zu23"     	  , [100,true ]],
     // TANK
-    ["UK3CB_KDF_B_T80"		                  ,[ 250  ,false]],
-    ["rhs_t80bv"     			                  ,[ 300  ,false]],
-    ["rhs_t80u"    				                  ,[ 350  ,false]],
-    // STATIC
-    ["UK3CB_ANA_B_SPG9"                  	  ,[ 30  ,true ] ],
-    ["UK3CB_ADM_O_2b14_82mm"     		        ,[ 100  ,true] ],
-    ["rhs_KORD_high_VDV"     		            ,[ 10  ,true ] ],
-    ["rhs_KORD_VDV"     			              ,[ 10  ,true ] ],
-    ["UK3CB_UN_I_Kornet"          , [ 100 ,true ] ]
+    ["rhs_t72ba_tv"    	 	   	    , [ 325,false ] ],
+    ["rhs_t72bb_tv"      			    , [ 400,false ] ],
+    ["rhsgref_BRDM2_ATGM_msv"     , [ 250,false ] ],
+    ["rhs_2s3_tv"    	  	 	      , [ 300,false ] ],  // STATIC
+    ["rhs_D30_msv"     			      , [ 100,true ] ],
+    ["rhs_2b14_82mm_msv"      		, [ 50,true ] ],
+    ["rhs_Kornet_9M133_2_msv"   	, [ 80,true ] ]
   ];
+  // SUPPORT
+  /*
+  ["rhs_gaz66_ammo_msv"     		  , [ 10  ,false ] ],
+  ["UK3CB_ARD_I_Ural_Fuel"      		  , [ 10  ,false ] ],
+  ["rhs_gaz66_repair_msv"    		  , [ 10  ,false ] ],
+  */
 
 /*------------------------------------------------------------------------------
 //VEHICULOS independent
