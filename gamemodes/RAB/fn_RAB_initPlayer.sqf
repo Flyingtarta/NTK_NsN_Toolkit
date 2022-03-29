@@ -104,34 +104,49 @@ while { true } do {
 
   //Verificamos que este dentro del area
   _advertencia = localnamespace getvariable ["advertencia",0];
-  if !(player inarea RabArea) then {
+  if ((vehicle player) isKindOf "Air") then {
     _advertencia = localnamespace getvariable ["advertencia",0];
-    localnamespace setvariable ["advertencia",(_advertencia+1)];
-    _blur ppEffectEnable true;
-    [] call NSN_fnc_notificacion_fueraDelArea;
-  }else{
-    _blur ppEffectEnable false;
-
-    _display = uiNamespace getvariable ['rcsNotificacion_idd',displayNull];
-    _display closeDisplay 1;
-    localnamespace setvariable ["advertencia",0];
-    /*
-    _zonasAliadas = zonas apply {
-      if ( ((missionNamespace getvariable _x) get "bando") isequalto (side player) ) then {
-        getMarkerPos _x
-      }else{
-        nil
-      };
+    if !(player inarea "RabArea_air") then {
+      localnamespace setvariable ["advertencia",(_advertencia+1)];
+      [] call NSN_fnc_notificacion_fueraDelArea;
+    }else{
+      _display = uiNamespace getvariable ['rcsNotificacion_idd',displayNull];
+      _display closeDisplay 1;
+      if (_advertencia > 0) then {localnamespace setvariable ["advertencia",(_advertencia-1)]};
     };
-    _zonasAliadas = _zonasAliadas select {!isnil {_x}};
-    _zonaMasCercana = [_zonasAliadas,player] call bis_fnc_nearestposition;
-    _zonaMasCercana = _pos2marker get _zonaMasCercana;
-    */
-  };
+    if ( _advertencia >= 30 ) then {
+      localnamespace setvariable ["advertencia",0];
+    };
+  } else {
 
-  if ( _advertencia >= 30 ) then { //if its keep outside the area, a mortar fall over its head :3
-    localnamespace setvariable ["advertencia",0];
-    _ammo = createvehicle ["Sh_82mm_AMOS", (getpos player) vectoradd [0,0,100], [], 10,"FLY"];
-    _ammo setVelocity [0,0,-30];
+    if !(player inarea RabArea) then {
+      _advertencia = localnamespace getvariable ["advertencia",0];
+      localnamespace setvariable ["advertencia",(_advertencia+1)];
+      _blur ppEffectEnable true;
+      [] call NSN_fnc_notificacion_fueraDelArea;
+    }else{
+      _blur ppEffectEnable false;
+      _display = uiNamespace getvariable ['rcsNotificacion_idd',displayNull];
+      _display closeDisplay 1;
+      localnamespace setvariable ["advertencia",0];
+      /*
+      _zonasAliadas = zonas apply {
+        if ( ((missionNamespace getvariable _x) get "bando") isequalto (side player) ) then {
+          getMarkerPos _x
+        }else{
+          nil
+        };
+      };
+      _zonasAliadas = _zonasAliadas select {!isnil {_x}};
+      _zonaMasCercana = [_zonasAliadas,player] call bis_fnc_nearestposition;
+      _zonaMasCercana = _pos2marker get _zonaMasCercana;
+      */
+    };
+
+    if ( _advertencia >= 30 ) then { //if its keep outside the area, a mortar fall over its head :3
+      localnamespace setvariable ["advertencia",0];
+      _ammo = createvehicle ["Sh_82mm_AMOS", (getpos player) vectoradd [0,0,100], [], 10,"FLY"];
+      _ammo setVelocity [0,0,-30];
+    };
   };
 };

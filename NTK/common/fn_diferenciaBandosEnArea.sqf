@@ -19,11 +19,11 @@ params ["_pos","_radio",["_area",""]];
 _ent = [];
 
 if (_radio > 0) then {
-  _ent = _pos nearentities [["man","car","tank","wheeled","tracked"],_radio];
-  _ent = _ent select { isTouchingGround _x && alive _x && !(_x getvariable ["NSN_VAR_LONEWOLF",false])};
+  //_ent = _pos nearentities [["man","car","tank","wheeled","tracked"],_radio];
+  _ent = allunits select { !((vehicle _x) isKindOf "Air") && alive _x && !(_x getvariable ["NSN_VAR_LONEWOLF",false])};
 }else{
   if (_area isequalto "") exitwith {systemchat "DIFERENCIA BANDOS ERROR | AREA NO DEFINIDA ";[-1,sideUnknown]};
-  _ent = allunits select {getpos _x inarea _area && isTouchingGround _x && alive _x && !( _x getvariable ["NSN_VAR_LONEWOLF",false] ) };
+  _ent = allunits select {getpos _x inarea _area && !((vehicle _x) isKindOf "Air") && alive _x && !( _x getvariable ["NSN_VAR_LONEWOLF",false] ) };
 };
 
 if (_ent isequalto [] ) exitwith { [-1,sideUnknown] };
