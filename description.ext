@@ -1,5 +1,5 @@
-onLoadIntro = "NSN | Guerra de los TOYOTA";
-OnLoadName		= "NSN | Guerra de los TOYOTA";
+onLoadIntro = "NSN | Afganistan 2025";
+OnLoadName		= "NSN | Afganistan 2025";
 OnLoadMission	= "";
 loadScreen		= "intro.jpg";
 briefingName = "";
@@ -11,8 +11,6 @@ briefingName = "";
 
 #include "rcs\menu_radial\ui\menu_radial.hpp"
 respawnOnStart = -1;
-
-
 
 class RscTitles
 {
@@ -26,22 +24,22 @@ class params {
   class Preparacion
   {
     title = "Tiempo preparacion";
-    texts[] = {"0","2 minutos","5 minutos","10 minutos","20 minutos"};
-    values[] = {0.1,2,5,10,20};
-    default = 2;
+    texts[] = {"0","2 minutos","5 minutos","10 minutos","20 minutos","30 minutos","40 minutos"};
+  	values[] = {0.1,2,5,10,20,30,40};
+    default = 10;
   };
   class AltoElFuego{
     title = "Tiempo Alto el Fuego";
     texts[] = {"0","2 minutos","5 minutos","10 minutos","20 minutos","30 minutos","40 minutos"};
     values[] = {0.1,2,5,10,20,30,40};
-    default = 2;
+    default = 20;
   };
   class Vidas
   {
     Title = "Cantidad de reapariciones por persona";
     texts[] = {"ninguna","1","2","3","5","Sin limite"};
     values[] = {0,1,2,3,5,-100};
-    default = 3;
+    default = 2;
   };
   class TiempoEntreZonas {
     Title = "Tiempo entre activacion de zonas";
@@ -54,13 +52,13 @@ class params {
     Title = "Duracion Total de la partida (sectoresAD)"
     texts[] = {"2min","10min","30min", "1hs","2hs","2:45hs","3hs"};
     values[] = {2,10,30,60,120,165,180};
-    default = 165;
+    default = 180;
   };
 
   class puntosDeCompra {
     Title = "Puntos totales para compra de vehiculos";
     texts[] = {"500","750","1000", "1200","1500","2000","2500","3000"};
     values[] = {500,750,1000,1200,1500,2000,2500,3000};
-    default = 1000;
+    default = 1200;
   };
 };

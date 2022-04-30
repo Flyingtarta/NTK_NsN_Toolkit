@@ -21,14 +21,13 @@ _ladox = floor (_ejex/_gridRadius);
 _ladoy = floor (_ejey/_gridRadius);
 for "_x" from 1 to _ladox do {
 	_prepos = _posInicial getpos [_x*_grid, _dir+90];
-
 	for "_y" from 0 to (_ladoy-1) do {
 
 		_markerPos =  _prepos getpos [_y*_grid, _dir];
 		_mk = createMarker [str [_x,_y], _markerPos];
 		_mk setMarkerDir _dir;
 		_mk setMarkerSize [_gridRadius,_gridRadius];
-		_mk setMarkerAlpha 0.7;
+		_mk setMarkerAlpha 0.4;
 		_mk setMarkerShape "RECTANGLE";
 		_mk setmarkerbrush "SolidBorder";
 		_bando = sideUnknown;
@@ -42,9 +41,12 @@ for "_x" from 1 to _ladox do {
 		  };
 		};
 
+		_subArea = [_mk,_bando] call nsn_fnc_RAB_subZone;
+
 		_data = createHashMapFromArray [
 			["bando", _bando],
-			["pos",_markerPos]
+			["pos",_markerPos],
+			["subArea",_subArea]
 		];
 		_zonas pushback _mk;
 		missionNamespace setvariable [_mk,_data,true];

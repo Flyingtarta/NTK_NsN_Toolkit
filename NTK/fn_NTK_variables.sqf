@@ -9,10 +9,10 @@
 //missionnamespace setvariable ["NSN_VAR_FOUNDS",1000];
 
 _fondos = ["puntosDeCompra",1500] call BIS_fnc_getParamValue;
-
-missionnamespace setvariable ["fondos_"+str(opfor) ,_fondos,true];
-missionnamespace setvariable ["fondos_"+str(blufor),_fondos,true];
-
+private _fondos_opf = missionnamespace getvariable ["fondos_"+str(opfor),_fondos];
+private _fondos_blu = missionnamespace getvariable ["fondos_"+str(blufor),_fondos];
+missionnamespace setvariable ["fondos_"+str(opfor),_fondos_opf];
+missionnamespace setvariable ["fondos_"+str(blufor) ,_fondos_blu];
 /*-------------------------------------------
   Variables de objeto de compra de vehiculos
 -------------------------------------------*/
@@ -25,23 +25,23 @@ private _blueVeh = createHashMapFromArray
   // CHAD
   [
     // TRANSPORTE
-    ["UK3CB_TKA_B_UH1H"                , [80    , true] ],
-    ["UK3CB_ADM_B_V3S_Closed"   		   , [ 20   ,true ] ],
-    ["UK3CB_ADM_B_Hilux_Closed"      	 , [ 10   ,true ] ],
-    ["UK3CB_ADM_B_Hilux_Open"     	 	 , [ 10   ,true ] ],
+    ["UK3CB_TKA_B_UH1H"                , [ 80   , true ] ],
+    ["UK3CB_ADM_B_V3S_Closed"   		   , [ 20   ,true  ] ],
+    ["UK3CB_ADM_B_Hilux_Closed"      	 , [ 10   ,true  ] ],
+    ["UK3CB_ADM_B_Hilux_Open"     	 	 , [ 10   ,true  ] ],
     // ARMED-APC-IFV
-    ["UK3CB_ADM_B_Hilux_Spg9"       	 , [ 40   ,true ] ],
-    ["UK3CB_ADM_B_Hilux_Zu23"    	 	 , [ 80   ,true ] ],
-    ["UK3CB_ADM_B_Hilux_Dshkm"     		 , [ 25   ,true ] ],
-    ["UK3CB_ADM_B_Hilux_Rocket"     	 , [ 100   ,false ] ],
-    ["UK3CB_ADM_B_Hilux_Rocket_Arty"     	 , [ 150  ,false ] ],
+    ["UK3CB_ADM_B_Hilux_Spg9"       	 , [ 40   ,true  ] ],
+    ["UK3CB_ADM_B_Hilux_Zu23"    	 	   , [ 80   ,true  ] ],
+    ["UK3CB_ADM_B_Hilux_Dshkm"     		 , [ 25   ,true  ] ],
+    ["UK3CB_ADM_B_Hilux_Rocket"     	 , [ 100  ,false ] ],
+    ["UK3CB_ADM_B_Hilux_Rocket_Arty"   , [ 150  ,false ] ],
     // TANK
     ["UK3CB_ADM_B_T55"      		       , [ 275  ,false ] ],
     // STATIC
     ["UK3CB_ADM_B_D30"     			       , [ 100  ,true ] ],
-    ["UK3CB_ADM_B_SPG9"     		       , [ 50  ,true ] ],
-    ["UK3CB_ADM_B_2b14_82mm"     		   , [ 50  ,true ] ],
-    ["rhs_Kornet_9M133_2_msv"     		 , [ 40  ,true ] ]
+    ["UK3CB_ADM_B_SPG9"     		       , [ 20   ,true ] ],
+    ["UK3CB_ADM_B_2b14_82mm"     		   , [ 50   ,true ] ],
+    ["rhs_Kornet_9M133_2_msv"     		 , [ 40   ,true ] ]
   ];
   /*
   // SUPPORT
@@ -72,7 +72,8 @@ private _opfor =  createHashMapFromArray
     // STATIC
     ["rhs_D30_msv"     			      , [ 100,true ] ],
     ["rhs_2b14_82mm_msv"      		, [ 50,true ] ],
-    ["rhs_Kornet_9M133_2_msv"   	, [ 40,true ] ]
+    ["rhs_Kornet_9M133_2_msv"   	, [ 40,true ] ],
+    ["UK3CB_ADM_B_SPG9"     		  , [ 20,true ] ]
   ];
   // SUPPORT
   /*

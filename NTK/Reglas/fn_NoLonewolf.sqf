@@ -7,7 +7,7 @@ Decription:
 
 
 Fix:
-  Setvariable 
+  Setvariable
 
 */
 
@@ -34,7 +34,7 @@ While {true} do {
           player setvariable ["NSN_VAR_LONEWOLF",true,true];
         };
 
-        if ( weaponLowered player && isnull (objectParent player) ) then {
+        if ( weaponLowered player || !isnull (objectParent player) ) then {
             HintSilent "Estas haciendo lonewolf\nReagrupate con tus compañeros o retirate a base";
             _blur ppEffectEnable false;
         }else{

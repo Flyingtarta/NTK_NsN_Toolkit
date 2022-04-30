@@ -27,7 +27,7 @@ if (_handler isequalto "lista_onLoad") then {
 
 if (_handler isequalto "init") then {
   if (localNamespace setvariable ["onEachFrame_MCV",false]) exitwith {};
-  addMissionEventHandler ["EachFrame",{    
+  addMissionEventHandler ["EachFrame",{
     _fondos =  format['Fondos: %1',missionnamespace getvariable ["fondos_"+str(side player),0] ];
     (finddisplay 1314 displayctrl 1001) ctrlSetText _fondos;
     localNamespace setvariable ["onEachFrame_MCV",true];
@@ -125,9 +125,7 @@ if (_handler isequalto "menuCompraVeh_onClick") then {
       _value = (_vehicles get _classname) select 0;
       _infCanUSe = (_vehicles get _classname) select 1;
       //_fondos = missionnamespace getvariable ['NSN_VAR_FOUNDS',0];
-      _fondos = missionnamespace getvariable ["fondos_"+str(side player),0];
-
-
+      _fondos = missionnamespace getvariable ["fondos_"+str(side player),-1];
 
       if ( _value > _fondos) exitwith {hint "No te quedan mas fondos"};
       deletevehicle _veh;

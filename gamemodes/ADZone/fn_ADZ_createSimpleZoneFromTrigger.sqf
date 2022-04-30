@@ -13,7 +13,7 @@ how to use :
 */
 
 
-params ["_trigger", ["_owner",sideUnknown] ,["_reward",100], ["_TargetCaptura",10] ];
+params ["_trigger", ["_owner",sideUnknown] ,["_reward",50], ["_TargetCaptura",120] ];
 
 
 private _pos = getpos _trigger;

@@ -17,4 +17,5 @@ class NsN_ResistAndBite {
   class RAB_drawZones      {};
   class RAB_gameplay       {};
   class RAB_initPlayer     {};
+  class RAB_subZone        {};
 };

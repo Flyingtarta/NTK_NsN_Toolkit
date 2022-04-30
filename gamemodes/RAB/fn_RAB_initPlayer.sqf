@@ -54,23 +54,26 @@ addMissionEventHandler ["EachFrame",{
   if (servertime < _tiempoDeAltoElFuego) then {
     if (servertime < _tiempoDePreparacion) then {
       _timer = [((_tiempoDePreparacion - servertime)/60)+.01,"HH:MM"] call BIS_fnc_timetostring;
-      _timer =parseText format ["<t color='#BFBF00'> Preparacion: %1 <t/>",_timer];
+      _timer =parseText format ["<t color='#BFBF00' > Preparacion:  %1 <t/>",_timer];
     }else {
       _timer = [((_tiempoDeAltoElFuego - serverTime)/60)+.01,"HH:MM"] call BIS_fnc_timetostring;
-      _timer = parseText format ["<t color='#BFBF00'> Alto el fuego: %1 <t/>",_timer];
+      _timer = parseText format ["<t color='#BFBF00'> Alto el fuego:> %1 <t/>",_timer];
     };
 
   }else{
     //_duracionTotalEvento = ((["Duracion",10] call BIS_fnc_getParamValue) * 60);
     _duracionTotalEvento = missionnamespace getvariable ["NSN_VAR_endTime",0];
     _timer = [((_duracionTotalEvento - servertime)/60)+.01,"HH:MM"] call BIS_fnc_timetostring;
+    _timer =parseText format ["<t color='#BFBF00'> %1 <t/>",_timer];
   };
+
 
   _banderaOpfor  = parseText "<img size='2' color='#FF1919' image='\A3\ui_f\data\map\markers\nato\b_unknown.paa'/>";
   _banderaBLufor = parseText "<img size='2' color='#1A1AFF' image='\A3\ui_f\data\map\markers\nato\b_unknown.paa'/>";
 
   _diffB = format [" (%1)", Marcador getOrDefault ["diffBlufor",0]];
   _diffO = format [" (%1)", Marcador getOrDefault ["diffOpfor",0]];
+
 
   _SucturedText = composeText [_timer,lineBreak,_banderaOpfor,"    ", str (marcador get opfor),_diffO,"   |   ",str (marcador get blufor),_diffB,"    ", _banderaBLufor ];
   _Marcador ctrlSetStructuredText _SucturedText;
