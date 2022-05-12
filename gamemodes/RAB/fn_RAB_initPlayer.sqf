@@ -83,6 +83,9 @@ addMissionEventHandler ["EachFrame",{
 
 
 
+
+
+
 /*
   Veryfies that its inside the game area - Probably ill change it in the future
 */
@@ -96,6 +99,7 @@ _blur = ppEffectCreate ["DynamicBlur",500];
 _blur ppEffectEnable false;
 _blur ppEffectAdjust [0.5];
 _blur ppEffectCommit 0;
+
 
 while { true } do {
 

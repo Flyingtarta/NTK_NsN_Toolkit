@@ -27,7 +27,7 @@ for "_x" from 1 to _ladox do {
 		_mk = createMarker [str [_x,_y], _markerPos];
 		_mk setMarkerDir _dir;
 		_mk setMarkerSize [_gridRadius,_gridRadius];
-		_mk setMarkerAlpha 0.4;
+		_mk setMarkerAlpha 0.6;
 		_mk setMarkerShape "RECTANGLE";
 		_mk setmarkerbrush "SolidBorder";
 		_bando = sideUnknown;
@@ -45,8 +45,7 @@ for "_x" from 1 to _ladox do {
 
 		_data = createHashMapFromArray [
 			["bando", _bando],
-			["pos",_markerPos],
-			["subArea",_subArea]
+			["pos",_markerPos]
 		];
 		_zonas pushback _mk;
 		missionNamespace setvariable [_mk,_data,true];

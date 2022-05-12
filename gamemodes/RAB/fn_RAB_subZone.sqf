@@ -2,8 +2,25 @@
 
 
 */
+#define SUBZONERADIUS 400
+
+params ['_mk',"_bando"];
+
+_pos = getmarkerpos _mk;
+_dir = markerdir _mk;
 
 
+_mk2 = createMarker [ (_mk + "_subzone"), _pos];
+_mk2 setMarkerDir _dir;
+_mk2 setMarkerSize [SUBZONERADIUS,SUBZONERADIUS];
+_mk2 setMarkerAlpha 0.3;
+_mk2 setMarkerShape "RECTANGLE";
+//_mk2 setmarkerbrush "DiagGrid";
+//_mk2 setmarkerColor "colorCivilian";
+_mk2
+
+
+/*
 #define SUBZONERADIUS 200
 
 params ['_mk',"_bando"];

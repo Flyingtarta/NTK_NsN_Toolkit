@@ -59,16 +59,16 @@ _duracionTotalEvento = servertime  + ((["Duracion",120] call BIS_fnc_getParamVal
 missionnamespace setvariable ["NSN_VAR_endTime",_duracionTotalEvento,true];
 while {servertime <= _duracionTotalEvento } do {
 
-  _zonasActivas = _zonas select {_zona = _x; {_x inarea _zona} count playableunits > 0};
-  systemchat  ("zonas activas: " + str (count _zonasActivas) );
+  //_zonasActivas = _zonas select {_zona = _x; {_x inarea _zona} count playableunits > 0};
+  //systemchat  ("zonas activas: " + str (count _zonasActivas) );
 
   {
     _zona = _x;
-    _data = missionNamespace getvariable _zona;
+    private _data = missionNamespace getvariable _zona;
     if (!isnil {_data}) then {
       //verifica si se capturo - Checks if its captured
       _capturableArea = _data get "subArea";
-      _diff = [_data get "pos",0,_capturableArea] call nsn_fnc_diferenciaBandosEnArea;
+      _diff = [_data get "pos",0,(_x + "_subzone")] call nsn_fnc_diferenciaBandosEnArea;
       _diff params ["_ratio","_bandoDom"];
       _owner = _data get "bando";
 
@@ -88,9 +88,6 @@ while {servertime <= _duracionTotalEvento } do {
         if (_owner isnotequalto _bandoDom && _bandoDom isnotequalto sideUnknown) then {
           _vecinoMismoBando = [_zona,_bandoDom] call NSN_FNC_RAB_canCaptureZone; //checks if its capturable (an direct neibor need to be friendly )
           if (_ratio >= 1.5 && _vecinoMismoBando ) then {//captura - you need a ratio of 1:1.5 to be able to capture the zone
-            /*
-            Falta verficiar que pueda captuarr por vecino
-            */
             _data set ["bando",_bandoDom];
             _zona setmarkercolor ("color" + str(_bandoDom));
             missionNamespace setvariable [_zona,_data,true]; //save all data of the zone
@@ -99,7 +96,7 @@ while {servertime <= _duracionTotalEvento } do {
       };//if (_owner isequalto sideUnknown) then
 
     };
-  }foreach _zonasActivas;
+  }foreach _zonas;
   [] call _actualizaMarcador; //just updates de scoreboard
   //publicVariable "Marcador"; //Broadcast the new scoreboard value
   sleep 1;// <-----------------------------------------------------------------------------------------------------------------------------------------DEBUG

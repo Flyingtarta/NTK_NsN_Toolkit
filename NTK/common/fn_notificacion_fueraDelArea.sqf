@@ -1,7 +1,7 @@
 /*
 Descripcion:
   Mensaje de que esta fuera del area permitida
-  Notification that tolds you are otuside the game area 
+  Notification that tolds you are otuside the game area
 */
 
 

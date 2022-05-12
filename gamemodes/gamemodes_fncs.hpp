@@ -19,3 +19,10 @@ class NsN_ResistAndBite {
   class RAB_initPlayer     {};
   class RAB_subZone        {};
 };
+
+class nsn_sideMissions {
+  file = "gamemodes\sideMissions";
+  class createSideMission_destroy {};
+  class createSideMission_intel {};
+  class sideMissions_init {postinit = 1};
+};

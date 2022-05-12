@@ -1,7 +1,5 @@
 /*
 
-
-
 global variable for scoreboard = Marcador
 
 
