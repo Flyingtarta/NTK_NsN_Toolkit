@@ -1,8 +1,8 @@
 /*
 	side missions creator
 
-
-	22:00 | arracna mision 
+	21:30 | Abre servidor y pueden entrar pero no salir de base
+	22:00 | arranca mision 
 	22:10 | fin tiempo de prep 
 	22.30 | fin Alto el fuego - Se habilitan zonas y antena
 	23.00 | primera mision secundaria
@@ -10,10 +10,11 @@
 	00:00 | tercera mision secundaria
 	00:30 | cuerta mision  secundaria
 	01:00 | Fin de la mision 
+	
 */
 
 // #define waitTime 30*60
-#define waitTime 5
+#define waitTime 1800
 
 if (!isServer) exitWith {};
 
@@ -31,33 +32,27 @@ waituntil { //Espera que pase el tiempo de alto el fuego y de preparacion
 
 private _mision_de_intel =
 {
-	[intel_opf_1, units opfor , "nsn_intel_opfor_1" , "Documentos en pc", "Recuperar PC de puesto avanzado para ser analizado por inteligencia", [ofi_opf_1],200] call nsn_fnc_createSideMission_intel;
-	[intel_blu_1, units blufor, "nsn_intel_blufor_1", "Documentos en pc", "Recuperar PC de puesto avanzado para ser analizado por inteligencia", [ofi_blu_1],200] call nsn_fnc_createSideMission_intel;
+	[intel_opf_1, opfor , "nsn_intel_opfor_1" , "Documentos", "Buscar Documentos (agarrarlos con menu de ACE) y llevarlos al general en base", [ofi_opf_1],200] call nsn_fnc_createSideMission_intel;
+	[intel_blu_1, blufor, "nsn_intel_blufor_1", "Documentos", "Buscar Documentos (agarrarlos con menu de ACE) y llevarlos al general en base", [ofi_blu_1],200] call nsn_fnc_createSideMission_intel;
 };
 
 private _mision_de_intel_2 =
 {
-	[intel_opf_2, units opfor , "nsn_intel_opfor_2" , "Documentos en pc", "Buscar Documentos", [ofi_opf_2],200] call nsn_fnc_createSideMission_intel;
-	[intel_blu_2, units blufor, "nsn_intel_blufor_2", "Documentos en pc", "Buscar Documentos", [ofi_blu_2],200] call nsn_fnc_createSideMission_intel;	
+	[intel_opf_2, opfor , "nsn_intel_opfor_2" , "Documentos", "Buscar Documentos (agarrarlos con menu de ACE) y llevarlos al general en base", [ofi_opf_2],200] call nsn_fnc_createSideMission_intel;
+	[intel_blu_2, blufor, "nsn_intel_blufor_2", "Documentos", "Buscar Documentos (agarrarlos con menu de ACE) y llevarlos al general en base", [ofi_blu_2],200] call nsn_fnc_createSideMission_intel;	
 };
 
 private _mision_de_destroy =
 {
-	[destroy_opf_1,units opfor  , "nsn_destroy_opf_1", "Cache de armas", "Inteligencia encontro un cache de armas en las montañas" ] call nsn_fnc_createSideMission_destroy;
-	[destroy_blu_1,units blufor , "nsn_destroy_blu_1", "Cache de armas", "Inteligencia encontro un cache de armas en las montañas" ] call nsn_fnc_createSideMission_destroy;
+	[destroy_opf_1,opfor  , "nsn_destroy_opf_1", "Cache de armas", "Inteligencia encontro un cache de armas en las montañas" ] call nsn_fnc_createSideMission_destroy;
+	[destroy_blu_1,blufor , "nsn_destroy_blu_1", "Cache de armas", "Inteligencia encontro un cache de armas en las montañas" ] call nsn_fnc_createSideMission_destroy;
 };
 
 private _mision_de_destroy_2 =
 {
-	[destroy_opf_2,units opfor  , "nsn_destroy_opf_2", "Destruir Antena", "Inteligencia encontro una antena de celulares siendo usada con fines militares" ] call nsn_fnc_createSideMission_destroy;
-	[destroy_blu_2,units blufor , "nsn_destroy_blu_2", "Destruir Antena", "Inteligencia encontro una antena de celulares siendo usada con fines militares" ] call nsn_fnc_createSideMission_destroy;
+	[destroy_opf_2,opfor  , "nsn_destroy_opf_2", "Destruir Antena", "Inteligencia encontro una antena de celulares siendo usada con fines militares" ] call nsn_fnc_createSideMission_destroy;
+	[destroy_blu_2,blufor , "nsn_destroy_blu_2", "Destruir Antena", "Inteligencia encontro una antena de celulares siendo usada con fines militares" ] call nsn_fnc_createSideMission_destroy;
 };
-
-
-
-
-
-
 
 private _mission_pool = [
 	_mision_de_intel,
@@ -73,4 +68,4 @@ while { _mission_pool isNotEqualTo [] } do {
 	[] call _mission;// manda la mision elegida
 };
 
-" termino de tirar todas las misiones" remoteexec ["systemchat",0]; 
+//"termino de tirar todas las misiones" remoteexec ["systemchat",0]; 

@@ -74,5 +74,5 @@ private _radius =  5 + ((boundingbox _target) select 2) * 1.5 ;
 		_radius
 	]
 
-] remoteexec ["addaction",_whoCanSeeIt];
+] remoteexec ["addaction",_whoCanSeeIt,_target];
 

@@ -58,10 +58,9 @@ _zonas = zonas; //zones are each "block"
 _duracionTotalEvento = servertime  + ((["Duracion",120] call BIS_fnc_getParamValue) * 60); // Max event duration
 missionnamespace setvariable ["NSN_VAR_endTime",_duracionTotalEvento,true];
 while {servertime <= _duracionTotalEvento } do {
-
+  sleep 120;
   //_zonasActivas = _zonas select {_zona = _x; {_x inarea _zona} count playableunits > 0};
   //systemchat  ("zonas activas: " + str (count _zonasActivas) );
-
   {
     _zona = _x;
     private _data = missionNamespace getvariable _zona;
@@ -77,7 +76,6 @@ while {servertime <= _duracionTotalEvento } do {
         if (_bandoDom isequalto sideUnknown) then {
             _zona setmarkercolor ("color" + str(_bandoDom));
             _data set ["bando",_bandoDom];
-
         }else{
            _zona setmarkercolor ("color" + str(_bandoDom));
            _data set ["bando",_bandoDom];
@@ -99,7 +97,7 @@ while {servertime <= _duracionTotalEvento } do {
   }foreach _zonas;
   [] call _actualizaMarcador; //just updates de scoreboard
   //publicVariable "Marcador"; //Broadcast the new scoreboard value
-  sleep 1;// <-----------------------------------------------------------------------------------------------------------------------------------------DEBUG
+  
 };
 /*
 Declara ganador y perdedor - after times up, checks the winner side, for some reason, it didnt work, not sure why

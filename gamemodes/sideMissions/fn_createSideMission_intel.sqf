@@ -82,6 +82,6 @@ missionNamespace setvariable [_task, true, true];
 			"true",
 			5
 		]
-	] remoteexec ["addaction",_whoCanSeeIt];
+	] remoteexec ["addaction",_whoCanSeeIt,_target];
 
 }foreach _retriveToWho;
