@@ -3,6 +3,8 @@ class variables {
   class NTK_variables { postinit =1};
 };
 
+
+/*
 class NsNReglas {
   file = "NTK\Reglas";
   class limiteDeVidas {};
@@ -14,9 +16,8 @@ class NsNReglas {
   class PrepareTime   {};
   class terrainAndViewDistanceMax {postinit = 1}; 
   class vehiclesAllowed {};
-
 };
-
+*/
 class Common {
   file = "NTK\common";
   class diferenciaBandosEnArea {};
