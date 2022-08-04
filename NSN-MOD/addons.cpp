@@ -1,0 +1,12 @@
+name = "NSN";
+picture = "LogoNSN.paa";
+actionName = "Discord";
+action = "https://discord.gg/3b2Kka76zT";
+description = "Mod de funciones y demas cosas para NSN";
+logo = LogoNSN.paa";
+logoOver = "LogoNSN.paa";
+tooltip = "NSN";
+tooltipOwned = "NSN";
+overview = "Mod con funciones y agregados para misiones TVT de nsn de uso libre, en el github encontraras informacion de como hacer uso de este mod";
+author = "NSN DEV TEAM";
+overviewPicture = LogoNSN.paa";
