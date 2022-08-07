@@ -12,7 +12,6 @@ class nsn_common_gamemodes {
 
 class nsn_ResistAndBite {
   file = "gamemodes\RAB";
-  
   class RAB_canCaptureZone    {};
   class RAB_drawZones         {};
   class RAB_gameplay          {};
@@ -23,8 +22,11 @@ class nsn_ResistAndBite {
 };
 
 class nsn_node_control {
-   file = "gamemodes\node_control";
-  class NC_init                 {};
+  file = "gamemodes\node_control";
+  class NC_canCapture           {};
+  class NC_gamemode_loop        {}
+  class NC_init                 {postinit = 1};
+  class NC_initPlayer           {};
   class NC_nodeArea             {}; 
   class NC_nodeDesconectedCheck {};
 };

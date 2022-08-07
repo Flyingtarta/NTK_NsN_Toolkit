@@ -6,9 +6,23 @@ Description:
 
 
 
-
+params ["_nodos"]; 
 {
-	_nodo = _x;
+	_node = _x;
+	_nodeData = _node getvariable "Data";
+	_owner = _nodeData get "owner";
+	_nodosVecinos = _nodeData get "connected";
 	
+	_alMenosUnoAliado = _nodosVecinos findif {
+		_nodoVecino = _x;
+		_ownerVecino = _nodoVecino getvariable "Data" get "owner";
+		_ownerVecino isEqualTo _owner
+	};
 
-}foreach nsn_nodos;
+	if (_alMenosUnoAliado isequalto -1) then { //Lo descapea 
+		_mk = _nodeData get "referenceMarker";
+		_mk setmarkercolor ("color" + str sideUnknown);
+		_nodeData set ["owner",sideUnknown];
+		_node setvariable ["Data",_nodeData,true];
+	};
+}foreach _nodos;

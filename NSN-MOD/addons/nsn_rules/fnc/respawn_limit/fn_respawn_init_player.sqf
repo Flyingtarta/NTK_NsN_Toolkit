@@ -1,5 +1,6 @@
 if !(hasInterface) exitwith {};
 
+waitUntil {!isnil "nsn_var_jugadores_respawn"};
 private _uid = getPlayerUID player;
 
 if (_uid in nsn_var_jugadores_respawn) then {

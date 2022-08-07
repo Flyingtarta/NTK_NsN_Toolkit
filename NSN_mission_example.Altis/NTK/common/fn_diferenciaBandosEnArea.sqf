@@ -1,6 +1,6 @@
 /*
 
-nsn_fnc_diferenciaBandos
+nsn_fnc_diferenciaBandosEnArea
 
 Descripcion:
   cuenta la cantidad de gente por bando y devuelve el bando con mayor presencia y con que porcentaje

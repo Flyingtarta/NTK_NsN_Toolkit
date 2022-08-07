@@ -20,6 +20,19 @@ class RscTitles
 #include "NTK\ntk_gui.hpp"
 /*----------------------------------------------------------*/
 
+/*--------------------------NSN CONFIG---------------------*/
+
+nsn_gamemode = "NodeControl"; //"RAB" = ResistandBite 
+
+
+
+/*----------------------------------------------------------*/
+
+
+
+
+
+
 class params {
   class Preparacion
   {

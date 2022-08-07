@@ -46,7 +46,6 @@ _capture_marker setmarkersize [0,0];
 
 
 //                Waituntil cease fire ends
-
 private _tiempoDeAltoElFuego = (["AltoElFuego",20] call BIS_fnc_getParamValue) * 60;
 waitUntil {missionnamespace getvariable ["NSN_VAR_endTime",-1] isNotEqualTo -1};
 waituntil {sleep 1; ((missionnamespace getvariable ["NSN_VAR_EndPrepTime",-1]) + _tiempoDeAltoElFuego )  < servertime };
@@ -72,9 +71,6 @@ private _fnc_modificar_capture_area = {
     _newsize = linearconversion [0,_TargetCaptura,_capture_progress,0,_areaSize];
     _capture_marker setmarkersize [_newsize,_newsize];
   };
-
-
-
 };
 
 while { servertime < _missionEndTime } do { //Mientras dure la mision 
