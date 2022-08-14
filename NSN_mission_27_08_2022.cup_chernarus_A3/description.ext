@@ -14,11 +14,13 @@ enableDebugConsole = 2;
 respawnOnStart = -1;
 class RscTitles
 {
-	#include "gamemodes\RAB\gui\marcador.hpp"
+	//#include "gamemodes\RAB\gui\marcador.hpp"
+  #include "NTK\scoreboard\gui\scoreboard_nodos.hpp"
 	#include "NTK\common\Notificacion\rcsNotificacion.hpp"
 };
 #include "NTK\ntk_gui.hpp"
-/*----------------------------------------------------------*/
+
+
 
 /*--------------------------NSN CONFIG---------------------*/
 

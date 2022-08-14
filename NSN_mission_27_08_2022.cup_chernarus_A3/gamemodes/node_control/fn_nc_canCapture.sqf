@@ -16,7 +16,7 @@ params ["_node","_side"];
 _nodeData = _node getvariable "Data";
 _nodosVecinos = _nodeData get "connected";
 
-systemchat str ( _nodosVecinos); 
+
 _alMenosUnoAliado = _nodosVecinos findif {
 	_nodoVecino = _x;
 	_ownerVecino = _nodoVecino getvariable "Data" get "owner";

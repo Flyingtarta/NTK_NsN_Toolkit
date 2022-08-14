@@ -54,3 +54,9 @@ class Queue {
   file = "NTK\Queue";
   class queue_init {postinit = 1};
 };
+
+class scoreboard {
+  file = "NTK\scoreboard\fncs";
+  class scoreboard_nodos_initplayer {postinit = 1};
+
+};

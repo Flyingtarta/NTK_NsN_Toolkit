@@ -1,0 +1,25 @@
+--- Prioridad Alta ---
+
+[falta] | Tiempo preparacion, marcador a 2km de base circular
+[falta] | Si se sale de tiempo de prep, morterazo
+[listo] | Cartel con estado de mision como en RAB 
+[listo] | Sistema de puntos en base a nodos
+[falta] | Loadouts | Alejo 
+[falta] | Seleccion de vehiculos | Kobra
+
+
+--- Prioridad Media: ---
+
+- Agregar el "guardar marcas personales del mapa" al mod de nsn 
+- Hacer centro de mando :
+    - Tp de base 
+    - Heal a los heridos que lleven al cdm 
+- Algo para poder llevar cajas de municion mas comodo ( sin las limitaciones de ace, pero que no pueda disparar)
+
+
+--- Prioridad baja ---
+- Nodos no se pueden capturar de a 1, necesitan ser minimo 3
+- sgto o cabo presente en nodo para capturarlo (?)
+- Borrar morteros que caigan dentro del punto 
+- Algo similar a Fortifytools para nodos 
+

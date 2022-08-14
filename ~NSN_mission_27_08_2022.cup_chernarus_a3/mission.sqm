@@ -27,7 +27,7 @@ class EditorData
 	};
 };
 binarizationWanted=0;
-sourceName="NSN_mission_27_08_2022";
+sourceName="~NSN_mission_27_08_2022";
 addons[]=
 {
 	"A3_Ui_F",

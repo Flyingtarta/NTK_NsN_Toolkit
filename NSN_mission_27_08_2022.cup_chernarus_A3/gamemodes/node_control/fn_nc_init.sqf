@@ -12,7 +12,9 @@ if (hasInterface) then { [] spawn nsn_fnc_NC_initPlayer};
 if !(isServer) exitwith {};
 
 //seleccionamos los nodos 
-private _max_line = 3000;
+private _max_line = 1350;
+
+
 private _nodos_mk = allMapMarkers select {"nodo" in _x}; 
 if (_nodos_mk isequalto []) exitwith {systemChat "ERROR | No se detectaron nodos para el modo Node Control"};
 private _nodos = [];
