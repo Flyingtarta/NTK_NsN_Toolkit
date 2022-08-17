@@ -3,6 +3,7 @@ waitUntil {! isNull (findDisplay 12 displayCtrl 51) };
 //if !(isnil "eh") then {(findDisplay 12 displayCtrl 51) ctrlRemoveEventHandler ["Draw",eh]};			//DEBUG 
 
 
+
 findDisplay 12 displayCtrl 51 ctrlAddEventHandler ["Draw",{
 	params ["_map"];
 	{
@@ -18,3 +19,6 @@ findDisplay 12 displayCtrl 51 ctrlAddEventHandler ["Draw",{
 		_map drawLine [_from,_to,_color ];	
 	}foreach nsn_lineas;
 }];
+
+
+[] spawn nsn_fnc_nc_ceaseFirePhase;

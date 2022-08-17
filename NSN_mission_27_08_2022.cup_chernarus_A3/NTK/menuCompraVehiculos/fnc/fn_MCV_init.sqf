@@ -11,6 +11,7 @@
 */
 if !(hasInterface) exitwith{};
 
+//waitUntil {missionNamespace getvariable ["NSN_VAR_EndPrepTime",-1] isnotequalto -1};
 if !(player getvariable ["CMD",false]) exitwith {}; //Si no es el comandante esto no se le ejecuta
 systemchat "CMD MCV INIT..";
 _menuDeCompra = player addaction ["MENU DE COMPRA DE VEHICLOS",{
@@ -45,7 +46,7 @@ findDisplay 46 displayAddEventHandler ["KeyDown", {
 
 //luego del tiempo de espera, chau menu
 _menuDeCompra spawn {
-	_end_preparation_time = missionnamespace getvariable ["NSN_VAR_PrepareTime",0];
+	_end_preparation_time = missionnamespace getvariable ["NSN_VAR_EndPrepTime",0];
 	_menuDeCompra = _this;
 	waituntil {servertime > _end_preparation_time};
 	player removeAction _menuDeCompra;

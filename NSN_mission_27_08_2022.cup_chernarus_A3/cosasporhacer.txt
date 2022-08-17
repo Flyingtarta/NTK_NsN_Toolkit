@@ -1,12 +1,15 @@
 --- Prioridad Alta ---
 
-[falta] | Tiempo preparacion, marcador a 2km de base circular
-[falta] | Si se sale de tiempo de prep, morterazo
+[listo] | alto el fuego, marcador a 2km de base circular
 [listo] | Cartel con estado de mision como en RAB 
 [listo] | Sistema de puntos en base a nodos
-[falta] | Loadouts | Alejo 
-[falta] | Seleccion de vehiculos | Kobra
+[listo] | Seleccion de vehiculos | Kobra
 
+
+[falta] | Loadouts | Alejo 
+[falta] | Si se sale de tiempo de prep, morterazo
+[falta] | Cambio de camuflaje en vehiculos 
+[falta] | Pylons y control de pylon 
 
 --- Prioridad Media: ---
 
@@ -22,4 +25,5 @@
 - sgto o cabo presente en nodo para capturarlo (?)
 - Borrar morteros que caigan dentro del punto 
 - Algo similar a Fortifytools para nodos 
-
+- Poner iconos arriba de lo vehiculos en menu de compra para mejor visibilidad
+- 

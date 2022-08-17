@@ -16,16 +16,20 @@ Output:
   None
 */
 
-params [ ["_Radius",1000]];
-waitUntil {missionnamespace getvariable ["NSN_VAR_PrepareTime",0] isnotequalto 0};
-_end_preparation_time = missionnamespace getvariable ["NSN_VAR_PrepareTime",0]; 
-if (servertime > _end_preparation_time) exitwith {}; 
+params [ ["_Radius",500]]; 
+
+
+waitUntil {missionNamespace getvariable ["NSN_VAR_EndPrepTime",-1] isnotequalto -1};
+
+private _preparetime = ["Preparacion",10] call BIS_fnc_getParamValue;
+_end_preparation_time = missionNamespace getvariable ["NSN_VAR_EndPrepTime", ((["Preparacion", 10] call BIS_fnc_getParamValue) * 60) ];
+
+if (servertime > _end_preparation_time) exitwith {systemchat "praration phase already passed"}; 
+
 sleep 1;
 //saves start position
 private _beginPos = getpos player;
-
 _time = _end_preparation_time;
-
 //if gets in late, shows same time left
 if (time > 1) then {
   _time = _end_preparation_time - servertime;
@@ -49,11 +53,11 @@ _eh = player addeventhandler ["Fired",{
     };
   }];
 
+while {servertime < _end_preparation_time } do { // in preparation phase
 
-while {_end_preparation_time > servertime } do { // in preparation phase
   //_time = _time - 1;
-  _end_preparation_time = missionnamespace getvariable ["NSN_VAR_PrepareTime",0];
-  _time = servertime - _end_preparation_time;
+  _end_preparation_time = missionnamespace getvariable "NSN_VAR_EndPrepTime";
+  _time = _end_preparation_time - servertime;
   hintSilent format["Tiempo de preparacion: \n %1", [((_time)/60)+.01,"HH:MM"] call BIS_fnc_timetostring];
   if (player distance2d _beginPos > _radius) then { //if its too far, its teleported
     if !(player getvariable ["NSN_VAR_PrepTime_exept",false]) then {

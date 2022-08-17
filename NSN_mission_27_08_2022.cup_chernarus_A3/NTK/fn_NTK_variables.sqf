@@ -22,31 +22,31 @@ missionnamespace setvariable ["fondos_"+str(blufor) ,_fondos_blu];
 //VEHICULOS BLUFOR
 ------------------------------------------------------------------------------*/
 private _blueVeh = createHashMapFromArray
-  // Tactibanes 
+  //croacia 
   [
-    // TRANSPORTE
-    ["UK3CB_ANA_B_B_UH60M"   		 , [ 100   ,true ] ], 
-    ["UK3CB_ANA_B_Benches_MH9"      	 , [ 100  ,true ] ],
-    ["UK3CB_ANA_B_M1030"     	 	 , [ 20  ,true ] ],
-    ["UK3CB_ANA_B_Hilux_Open"     	 	 , [ 10  ,true ] ],
-    ["UK3CB_ANA_B_M998_2DR"     	 	 , [ 15  ,true ] ],
-    ["UK3CB_ANA_B_M1151"     	 	 , [ 45  ,true ] ],
-    ["UK3CB_B_M939_Closed_HIDF"     	 , [ 35  ,true ] ],
-    // VEHICULOS LIGEROS ARMADOS
-    ["UK3CB_ANA_B_Hilux_M2"       		 , [ 55   ,true ] ],
-    ["UK3CB_ANA_B_Hilux_Spg9"    	 	 , [ 95  ,true ] ],
-    ["UK3CB_MEI_B_Hilux_BMP"     		 , [ 260   ,true ] ],
-    ["UK3CB_ANA_B_M1151_OGPK_M2"     	 , [ 135   ,true ] ],
-    ["rhsusf_m1245_m2crows_socom_deploy"     , [ 240 ,true ] ],
+     // TRANSPORTE
+    ["CRO_HeliTransport_UH60M_M134_W"   	 , [ 95  ,true ] ], 
+    ["CRO_Heli_Mi171Sh_S8"      		 , [ 135  ,true ] ],
+    ["CRO_HMMWV_M1151_W"     	 	 , [ 10  ,true ] ],
+    ["CRO_Truck_GOMBR_TAM110"     	 	 , [ 15  ,true ] ],
+    ["CRO_Truck_FAP2026_W"     	 	 , [ 20  ,true ] ],
+    // VEHICULOS ARMADOS
+    ["CRO_HMMWV_M1151_M2_W"       		 , [ 45   ,true ] ], //Ligero
+    ["CRO_AMV_GMBR_BOVP127"    	 	 , [ 135  ,true ] ], //APC
+    ["CRO_IFV_GOMBR_M80A"     		 , [ 140   ,true ] ], //ifv barato
+    ["CRO_IFV_GOMBR_M2A2ODS_W2"     	 , [ 280   ,true ] ], //ifv caro
+    ["CRO_MBT_GOMBR_M84A4_Snajper"   	 , [ 250 ,true ] ], //tanque barato
+    ["rhs_t80ue1"   			 , [ 450 ,true ] ], //tanque caro
     // STATIC
-    ["UK3CB_CW_US_B_Early_TOW_TriPod"     	 , [ 85  ,true ] ],
-    ["UK3CB_ADM_B_SPG9"     		 , [ 50  ,true ] ],
-    ["UK3CB_ADM_B_2b14_82mm"     		 , [ 50  ,true ] ],
-    ["B_G_HMG_02_high_F"     		 , [ 25  ,true ] ]
+    ["CRO_Turret_M2_W"     			 , [ 13  ,true ] ],
+    ["RHS_TOW_TriPod_USMC_WD"     		 , [ 50  ,true ] ],
+    ["rhssaf_army_m252"     		 , [ 30  ,true ] ],
+    ["rhsgref_cdf_b_ZU23"     		 , [ 110  ,true ] ],
+    ["rhs_D30_vmf"     			 , [ 105  ,true ] ],		
     // SUPPORT
-    /*["UK3CB_MDF_B_MTVR_Repair"     		  , [ 10  ,false ] ],
-    ["UK3CB_MDF_B_MTVR_Reammo"      	  , [ 10  ,false ] ],
-    ["UK3CB_MDF_B_MTVR_Refuel"    		  , [ 10  ,false ] ]*/
+    ["CRO_Truck_GMBR_TAM150_Repair"     		  , [ 10  ,false ] ],
+    ["CRO_Truck_GMBR_TAM150_Refuel"      		  , [ 10  ,false ] ],
+    ["CRO_Truck_TAM150_Ammo_Open"    		  , [ 10  ,false ] ]
   ];
 
 /*------------------------------------------------------------------------------
@@ -54,26 +54,28 @@ private _blueVeh = createHashMapFromArray
 ------------------------------------------------------------------------------*/
 
 private _opfor =  createHashMapFromArray [
-  ["rhs_ka60_grey"       	 		  , [ 100  ,true ] ],
-  ["RHS_Mi8mt_vvs"       	 		  , [ 100  ,true ] ],
-  ["rhs_uaz_open_vdv"  			  , [ 10  ,true ] ], 
-  ["rhs_kamaz5350_msv"  		 	  , [ 20  ,true ] ], 
-  ["rhs_tigr_m_3camo_msv"       	 	  , [ 55  ,true ] ],
-  ["UK3CB_ARD_B_GAZ_Vodnik"       	  , [ 65  ,true ] ],
-  // VEHICULOS ARMADOS  LIGEROS
-  ["rhs_btr80a_msv"           		  , [ 240  ,true] ],
-  ["UK3CB_ARD_B_GAZ_Vodnik_Cannon"          , [ 215  ,true ] ],
-  ["UK3CB_ARD_B_GAZ_Vodnik_PKT"     	  , [ 100  ,true ] ],
-  ["UK3CB_CW_SOV_O_LATE_VDV_UAZ_SPG9"       , [ 105  ,true ] ],
-  // STATIC
-  ["UK3CB_ADP_O_KORD_high"     		  , [ 25  ,true ] ],
-  ["rhs_2b14_82mm_msv"      		  , [ 50  ,true ] ],
-  ["rhs_Kornet_9M133_2_vmf"   	 	  , [ 85  ,true ] ],
-  ["rhs_SPG9M_MSV"   	 		  , [ 50  ,true ] ]
-  // SUPPORT
-  /*["RHS_Ural_Repair_MSV_01"     		  , [ 10  ,false ] ],
-  ["RHS_Ural_Fuel_MSV_01"      		  , [ 10  ,false ] ],
-  ["rhs_kamaz5350_ammo_vv"    		  , [ 10  ,false ] ]*/
+    ["rhs_ka60_c"       	 		  , [ 85 ,true ] ],
+    ["RHS_Mi8MTV3_vdv"       	 	  , [ 135  ,true ] ],
+    ["rhs_gaz66_msv"  			  , [ 15  ,true ] ], 
+    ["rhssaf_army_ural"  		 	  , [ 20  ,true ] ], 
+    ["rhs_tigr_msv"       	 	 	  , [ 25  ,true ] ],
+    // VEHICULOS ARMADOS 
+    ["rhs_btr80a_msv"           		  , [ 125  ,true] ], //APC
+    ["rhsgref_BRDM2_msv"        		  , [ 75  ,true ] ], //Ligero	
+    ["rhs_bmp1k_msv"     	 		  , [ 140  ,true ] ], //IFV barato
+    ["rhs_bmp2d_msv9"      			  , [ 280  ,true ] ], //IFV caro
+    ["rhs_t72bb_tv"     	 		  , [ 250  ,true ] ], //Tanque barato
+    ["rhs_t90saa_tv"      			  , [ 450  ,true ] ], //tanque caro
+    // STATIC
+    ["rhs_KORD_high_MSV"     		  , [ 15  ,true ] ],
+    ["rhs_2b14_82mm_msv"      		  , [ 30  ,true ] ],
+    ["rhs_Kornet_9M133_2_msv"   	 	  , [ 50  ,true ] ],
+    ["rhssaf_army_d30"   	 		  , [ 105  ,true ] ],
+    ["RHS_ZU23_VDV"   	 		  , [ 110  ,true ] ],
+    // SUPPORT
+    ["RHS_Ural_Repair_MSV_01"     		  , [ 10  ,false ] ],
+    ["rhssaf_army_ural_fuel"      		  , [ 10  ,false ] ],
+    ["RHS_Ural_Ammo_MSV_01"    		  , [ 10  ,false ] ]
 ];
 
 /*------------------------------------------------------------------------------

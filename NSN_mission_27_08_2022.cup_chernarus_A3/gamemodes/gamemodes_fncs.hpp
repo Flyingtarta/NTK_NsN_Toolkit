@@ -24,7 +24,8 @@ class nsn_ResistAndBite {
 class nsn_node_control {
   file = "gamemodes\node_control";
   class NC_canCapture           {};
-  class NC_gamemode_loop        {}
+  class NC_ceaseFirePhase       {};
+  class NC_gamemode_loop        {};
   class NC_init                 {postinit = 1};
   class NC_initPlayer           {};
   class NC_nodeArea             {}; 

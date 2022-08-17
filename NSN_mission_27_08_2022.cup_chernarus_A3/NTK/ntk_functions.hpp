@@ -39,7 +39,7 @@ class KOL {
 class MCV {
   file = "NTK\menuCompraVehiculos\fnc";
   class MCV_canSpawn      {};
-  class MCV_init          {postinit =1 };
+  class MCV_init          {postinit =1}
   class MCV_menuCompraVeh {};
   class MCV_spawnVehicle  {};
 };
